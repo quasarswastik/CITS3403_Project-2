@@ -1,0 +1,165 @@
+<!-- one allowing answers to be submitted from users -->
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Project 2 - User Answers</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CITS3403 Project 2">
+    <meta name="author" content="co-authored by Craig Huggins, Swastik Raj Chauhan, Frank Sgro, Adam Inskip">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Exo+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="main.css">
+    <script src="JavaScript/interactive.js"></script>
+</head>
+
+<body>
+
+    <!-- Headers -->
+    <div class="headfoot text_basis">
+        <h1>Question sets</h1>
+        <h2>Available</h2>
+    </div>
+
+    <!-- wrapper used to center content of page with a max width -->
+    <div class="wrapper">
+        <div class="dropdown-test" style="margin-top: 20px;">
+            <button class="selection_button">Choose Test</button>
+            <div class="test-selection">
+                <a id="test_link_1" href="#" onclick="showtest();return false;">Test 1: General Knowledge</a>
+                <a id="test_link_2" href="#" onclick="showtest();return false;">Test 2: Maths</a>
+                <a id="test_link_3" href="#" onclick="showtest();return false;">Test 3: Programming</a>
+            </div>
+        </div>
+        <h1 id="question_set_title" hidden>Question Set</h1>
+        <div class="question_set" id="question_set" hidden>
+            <div class="question_block" id="question_1">
+                <h4 class="question_number">Question 1</h4>
+                <p>Hypothetical - What is the capital city of ... ?</p>
+                <input type="radio" id="Q1_A" name="answer" value="Q1_A">
+                <label for="Q1_A">A</label><br>
+                <input type="radio" id="Q1_B" name="answer" value="Q1_B">
+                <label for="Q1_B">B</label><br>
+                <input type="radio" id="Q1_C" name="answer" value="Q1_C">
+                <label for="Q1_C">C</label><br>
+                <input type="radio" id="Q1_D" name="answer" value="Q1_D">
+                <label for="Q1_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_2">
+                <h4 class="question_number">Question 2</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q2_A" name="answer" value="Q2_A">
+                <label for="Q2_A">A</label><br>
+                <input type="radio" id="Q2_B" name="answer" value="Q2_B">
+                <label for="Q2_B">B</label><br>
+                <input type="radio" id="Q2_C" name="answer" value="Q2_C">
+                <label for="Q2_C">C</label><br>
+                <input type="radio" id="Q2_D" name="answer" value="Q2_D">
+                <label for="Q2_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_3">
+                <h4 class="question_number">Question 3</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q3_A" name="answer" value="Q3_A">
+                <label for="Q3_A">A</label><br>
+                <input type="radio" id="Q3_B" name="answer" value="Q3_B">
+                <label for="Q3_B">B</label><br>
+                <input type="radio" id="Q3_C" name="answer" value="Q3_C">
+                <label for="Q3_C">C</label><br>
+                <input type="radio" id="Q3_D" name="answer" value="Q3_D">
+                <label for="Q3_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_4">
+                <h4 class="question_number">Question 4</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q4_A" name="answer" value="Q4_A">
+                <label for="Q4_A">A</label><br>
+                <input type="radio" id="Q4_B" name="answer" value="Q4_B">
+                <label for="Q4_B">B</label><br>
+                <input type="radio" id="Q4_C" name="answer" value="Q4_C">
+                <label for="Q4_C">C</label><br>
+                <input type="radio" id="Q4_D" name="answer" value="Q4_D">
+                <label for="Q4_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_5">
+                <h4 class="question_number">Question 5</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q5_A" name="answer" value="Q5_A">
+                <label for="Q5_A">A</label><br>
+                <input type="radio" id="Q5_B" name="answer" value="Q5_B">
+                <label for="Q5_B">B</label><br>
+                <input type="radio" id="Q5_C" name="answer" value="Q5_C">
+                <label for="Q5_C">C</label><br>
+                <input type="radio" id="Q5_D" name="answer" value="Q5_D">
+                <label for="Q5_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_6">
+                <h4 class="question_number">Question 6</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q6_A" name="answer" value="Q6_A">
+                <label for="Q6_A">A</label><br>
+                <input type="radio" id="Q6_B" name="answer" value="Q6_B">
+                <label for="Q6_B">B</label><br>
+                <input type="radio" id="Q6_C" name="answer" value="Q6_C">
+                <label for="Q6_C">C</label><br>
+                <input type="radio" id="Q6_D" name="answer" value="Q6_D">
+                <label for="Q6_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_7">
+                <h4 class="question_number">Question 7</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q7_A" name="answer" value="Q7_A">
+                <label for="Q7_A">A</label><br>
+                <input type="radio" id="Q7_B" name="answer" value="Q7_B">
+                <label for="Q7_B">B</label><br>
+                <input type="radio" id="Q7_C" name="answer" value="Q7_C">
+                <label for="Q7_C">C</label><br>
+                <input type="radio" id="Q7_D" name="answer" value="Q7_D">
+                <label for="Q7_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_8">
+                <h4 class="question_number">Question 8</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q8_A" name="answer" value="Q8_A">
+                <label for="Q8_A">A</label><br>
+                <input type="radio" id="Q8_B" name="answer" value="Q8_B">
+                <label for="Q8_B">B</label><br>
+                <input type="radio" id="Q8_C" name="answer" value="Q8_C">
+                <label for="Q8_C">C</label><br>
+                <input type="radio" id="Q8_D" name="answer" value="Q8_D">
+                <label for="Q8_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_9">
+                <h4 class="question_number">Question 9</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q9_A" name="answer" value="Q9_A">
+                <label for="Q9_A">A</label><br>
+                <input type="radio" id="Q9_B" name="answer" value="Q9_B">
+                <label for="Q9_B">B</label><br>
+                <input type="radio" id="Q9_C" name="answer" value="Q9_C">
+                <label for="Q9_C">C</label><br>
+                <input type="radio" id="Q9_D" name="answer" value="Q9_D">
+                <label for="Q9_D">D</label><br>
+            </div>
+            <div class="question_block" id="question_10">
+                <h4 class="question_number">Question 10</h4>
+                <p>(insert question here)</p>
+                <input type="radio" id="Q10_A" name="answer" value="Q10_A">
+                <label for="Q10_A">A</label><br>
+                <input type="radio" id="Q10_B" name="answer" value="Q10_B">
+                <label for="Q10_B">B</label><br>
+                <input type="radio" id="Q10_C" name="answer" value="Q10_C">
+                <label for="Q10_C">C</label><br>
+                <input type="radio" id="Q10_D" name="answer" value="Q10_D">
+                <label for="Q10_D">D</label><br>
+            </div>
+            <div id="Test_Submission">
+                <input type="submit" id="submit_test_btn" class="submit_test_btn" value="Submit Test">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
