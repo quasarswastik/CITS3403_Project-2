@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="question_set" id="question_set">
+    {% for question in questions %}
+    <div>
+        <h4 class="question_number">Question {{ question.question_number }}</h4>
+        <p>{{ question.body }}</p>
+            <input type="radio" id="Selection_A" name="answer" value="Selection_A">
+            <label for="Selection_A">A</label><br>
+            <input type="radio" id="Selection_B" name="answer" value="Selection_B">
+            <label for="Selection_B">B</label><br>
+            <input type="radio" id="Selection_C" name="answer" value="Selection_C">
+            <label for="Selection_C">C</label><br>
+            <input type="radio" id="Selection_D" name="answer" value="Selection_D">
+            <label for="Selection_D">D</label><br>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
