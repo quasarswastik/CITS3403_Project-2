@@ -1,0 +1,5 @@
+.DS_Store
+virtual-env/*
+venvv/*
+app/__pycache__/*
+__pycache__/*

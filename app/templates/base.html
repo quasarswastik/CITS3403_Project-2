@@ -26,14 +26,24 @@
                     <a class="navbar-brand" href="#">Quiz</a>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li><a href="/index" class="nav-link">Home</a></li>
-                    <li><a href="/taketest" class="nav-link">Take Test</a></li>
+                    <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
+                    <li><a href="{{ url_for('take_test') }}" class="nav-link">Take Test</a></li>
+                    <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
                </ul>
             </div>
         </nav>
 
         <div class="container">
         <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
         </div>
     </body>
