@@ -18,8 +18,8 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
-        <p>{{ form.administrator_check() }}  {{ form.administrator_check.label }}</p>
         <p>{{ form.remember_me() }}  {{ form.remember_me.label }}</p>
         <p>{{ form.submit() }}</p>
     </form>
+    <p>Not Registered? <a href="{{ url_for('register') }}">Sign Up Here!</a></p>
 {% endblock %}
