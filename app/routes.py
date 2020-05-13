@@ -77,3 +77,18 @@ def register():
             form.username.data, form.administrator.data))
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
+
+@app.route('/results')
+def results():
+    # Mock Questions
+    questions = [
+        {
+            'question_number': '1',
+            'body': 'What is the capital city of...?'
+        },
+        {
+            'question_number': '2',
+            'body': 'What is the sum of the equation'
+        }
+    ]
+    return render_template('results.html', title = 'Results', questions=questions)

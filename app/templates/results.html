@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="result_set" id="result_set">
+    {% for question in questions %}
+    <div>
+        <h4 class="question_number">Question {{ question.question_number }}</h4>
+        <p>{{ question.body }}</p>
+        <table class="answer_table">
+            <tr>
+                <!-- mark incorrect selection -->
+                <td><i class="material-icons">clear</i></td>
+                <!-- check the user's selection -->
+                <td><input type="radio" disabled="disabled" checked="true"></td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <!-- mark correct answer -->
+                <td><i class="material-icons">done</i></td>
+                <td><input type="radio" disabled="disabled"></td>
+                <td>B</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="radio" disabled="disabled"></td>
+                <td>C</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="radio" disabled="disabled"></td>
+                <td>D</td>
+            </tr>
+        </table>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
