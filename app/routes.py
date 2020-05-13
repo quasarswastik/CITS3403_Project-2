@@ -83,12 +83,28 @@ def results():
     # Mock Questions
     questions = [
         {
-            'question_number': '1',
-            'body': 'What is the capital city of...?'
+            'body': 'What is the capital city of Australia?',
+            'correctAnswer': 'Canberra',
+            'answer2': 'Sydney',
+            'answer3': 'Perth',
+            'answer4': 'Melbourne'
         },
         {
-            'question_number': '2',
-            'body': 'What is the sum of the equation'
+            'body': 'What is the capital city of England?',
+            'correctAnswer': 'London',
+            'answer2': 'Manchester',
+            'answer3': 'Sheffield',
+            'answer4': 'Liverpool'
         }
     ]
-    return render_template('results.html', title = 'Results', questions=questions)
+
+    # Mock user answer
+    answers = [
+        {
+            'answer': 'Sydney'
+        },
+        {
+            'answer': 'London'
+        }
+    ]
+    return render_template('results.html', title = 'Results', questions=questions, answers=answers)

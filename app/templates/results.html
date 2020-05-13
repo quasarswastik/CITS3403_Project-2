@@ -3,35 +3,111 @@
 {% block content %}
 <div class="result_set" id="result_set">
     {% for question in questions %}
+    {% set currentAnswer = answers[loop.index0] %}
     <div>
-        <h4 class="question_number">Question {{ question.question_number }}</h4>
         <p>{{ question.body }}</p>
         <table class="answer_table">
-            <tr>
-                <!-- mark incorrect selection -->
-                <td><i class="material-icons">clear</i></td>
-                <!-- check the user's selection -->
-                <td><input type="radio" disabled="disabled" checked="true"></td>
-                <td>A</td>
-            </tr>
-            <tr>
-                <!-- mark correct answer -->
-                <td><i class="material-icons">done</i></td>
-                <td><input type="radio" disabled="disabled"></td>
-                <td>B</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" disabled="disabled"></td>
-                <td>C</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="radio" disabled="disabled"></td>
-                <td>D</td>
-            </tr>
+            {% if question.correctAnswer == currentAnswer.answer %}
+                <tr>
+                    <!-- mark user's selection, correct -->
+                    <td><i class="material-icons">done</i></td>
+                    <td><input type="radio" disabled="disabled", checked='true'></td>
+                    <td>{{ question.correctAnswer }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer2 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer3 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer4 }}</td>
+                </tr>
+
+            {% elif question.answer2 == currentAnswer.answer %}
+                <tr>
+                    <!-- mark as correct answer -->
+                    <td><i class="material-icons">done</i></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.correctAnswer }}</td>
+                </tr>
+                <tr>
+                    <!-- mark the user's selection, incorrect -->
+                    <td><i class="material-icons">clear</i></td>
+                    <td><input type="radio" disabled="disabled", checked='true'></td>
+                    <td>{{ question.answer2 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer3 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer4 }}</td>
+                </tr>
+            {% elif question.answer3 == currentAnswer.answer %}
+                <tr>
+                    <!-- mark as correct answer -->
+                    <td><i class="material-icons">done</i></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.correctAnswer }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer2 }}</td>
+                </tr>
+                <tr>
+                    <!-- mark the user's selection, incorrect -->
+                    <td><i class="material-icons">clear</i></td>
+                    <td><input type="radio" disabled="disabled", checked='true'></td>
+                    <td>{{ question.answer3 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer4 }}</td>
+                </tr>
+            {% elif question.answer3 == currentAnswer.answer %}
+                <tr>
+                    <!-- mark as correct answer -->
+                    <td><i class="material-icons">done</i></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.correctAnswer }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled"></td>
+                    <td>{{ question.answer2 }}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><input type="radio" disabled="disabled", checked='true'></td>
+                    <td>{{ question.answer3 }}</td>
+                </tr>
+                <tr>
+                    <!-- mark the user's selection, incorrect -->
+                    <td><i class="material-icons">clear</i></td>
+                    <td><input type="radio" disabled="disabled", checked='true'></td>
+                    <td>{{ question.answer4 }}</td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td></td>
+                    <td>{{ answers.answer }}</td>
+                    <td>{{ question.correctAnswer }}</td>
+                </tr>
+            {% endif %}
         </table>
-    </div>
     {% endfor %}
+    </div>
 </div>
 {% endblock %}
