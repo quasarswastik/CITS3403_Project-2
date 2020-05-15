@@ -15,23 +15,14 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required # this will force login to access the page
 def index():
-    # Mock Users Object
-    users = [
-        {
-            'username': 'Craig'
-        },
-        {
-            'username': 'Swastik'
-        },
-        {
-            'username': 'Adam'
-        }
-    ]
+    # Fetch all users
+    users = User.query.all()
 
     return render_template('index.html', title = 'Home', users = users)
 
 
 @app.route('/taketest')
+@login_required # this will force login to access the page
 def take_test():
     # Mock Questions
     questions = [
@@ -63,6 +54,11 @@ def login():
             next_page = url_for('index')
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
