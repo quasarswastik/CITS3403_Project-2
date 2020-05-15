@@ -37,6 +37,12 @@ def take_test():
     ]
     return render_template('q_answers.html', title = 'Test', questions = questions)
 
+@app.route('/admin_page')
+@login_required # this will force login to access the page
+def admin_page():
+  
+    return render_template('admin_page.html', title = 'Test')
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -65,7 +71,7 @@ def logout():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username = form.username.data, email=form.email.data)
+        user = User(username = form.username.data, email=form.email.data, admin=form.administrator.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()

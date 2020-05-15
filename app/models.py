@@ -10,6 +10,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    admin = db.Column(db.Boolean)
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
