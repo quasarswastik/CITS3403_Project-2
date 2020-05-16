@@ -18,8 +18,9 @@ from werkzeug.urls import url_parse
 def index():
     # Fetch all users
     users = User.query.all()
+    questions = Question.query.all()
 
-    return render_template('index.html', title = 'Home', users = users)
+    return render_template('index.html', title = 'Home', users = users, questions = questions)
 
 
 @app.route('/taketest')
@@ -78,8 +79,8 @@ def register():
 def admin_page():
     form = QuestionEntryForm()
     if form.validate_on_submit():
-        question = Question(body = form.body.data, choice_1=form.choice_1.data, choice_2=form.choice_2.data,
-                            choice_3=form.choice_3.data, choice_4=form.choice_4.data, correct_answer=form.correct_answer.data)
+        question = Question(body = form.body.data, correctAnswer=form.correctAnswer.data, answer2=form.answer2.data,
+                            answer3=form.answer3.data, answer4=form.answer4.data)
         db.session.add(question)
         db.session.commit()
         flash('Question has been set')

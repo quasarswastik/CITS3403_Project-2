@@ -13,37 +13,30 @@
             {% endfor %}
         </p>
         <p>
-            {{ form.choice_1.label }}<br>
-            {{ form.choice_1(size=64) }}<br>
-            {% for error in form.choice_1.errors %}
+            {{ form.correctAnswer.label }}<br>
+            {{ form.correctAnswer(size=64) }}<br>
+            {% for error in form.correctAnswer.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.choice_2.label }}<br>
-            {{ form.choice_2(size=64) }}<br>
-            {% for error in form.choice_2.errors %}
+            {{ form.answer2.label }}<br>
+            {{ form.answer2(size=64) }}<br>
+            {% for error in form.answer2.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.choice_3.label }}<br>
-            {{ form.choice_3(size=64) }}<br>
-            {% for error in form.choice_3.errors %}
+            {{ form.answer3.label }}<br>
+            {{ form.answer3(size=64) }}<br>
+            {% for error in form.answer3.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
         <p>
-            {{ form.choice_4.label }}<br>
-            {{ form.choice_4(size=64) }}<br>
-            {% for error in form.choice_4.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.correct_answer.label }}<br>
-            {{ form.correct_answer(size=64) }}<br>
-            {% for error in form.correct_answer.errors %}
+            {{ form.answer4.label }}<br>
+            {{ form.answer4(size=64) }}<br>
+            {% for error in form.answer4.errors %}
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
