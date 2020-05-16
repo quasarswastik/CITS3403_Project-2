@@ -116,3 +116,13 @@ def results():
         }
     ]
     return render_template('results.html', title = 'Results', questions=questions, answers=answers)
+
+@app.route('/theme')
+def theme():
+    # Fetch all users
+    return render_template('theme.html', title = 'Theme')
+
+@app.route('/authors')
+def theme():
+    # Fetch all users
+    return render_template('authors.html', title = 'Authors')
