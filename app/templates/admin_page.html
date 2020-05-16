@@ -3,4 +3,52 @@
 {% block content %}
     <h1>Hi Administrator: {{current_user.username}} </h1>
     <p>In this page, you will be able to edit and add Question sets</p>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.body.label }}<br>
+            {{ form.body(size=256) }}<br>
+            {% for error in form.body.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.choice_1.label }}<br>
+            {{ form.choice_1(size=64) }}<br>
+            {% for error in form.choice_1.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.choice_2.label }}<br>
+            {{ form.choice_2(size=64) }}<br>
+            {% for error in form.choice_2.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.choice_3.label }}<br>
+            {{ form.choice_3(size=64) }}<br>
+            {% for error in form.choice_3.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.choice_4.label }}<br>
+            {{ form.choice_4(size=64) }}<br>
+            {% for error in form.choice_4.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.correct_answer.label }}<br>
+            {{ form.correct_answer(size=64) }}<br>
+            {% for error in form.correct_answer.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
 {% endblock %}

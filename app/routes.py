@@ -2,10 +2,11 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app, db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
+from app.forms import QuestionEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User
+from app.models import User, Question
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -25,23 +26,15 @@ def index():
 @login_required # this will force login to access the page
 def take_test():
     # Mock Questions
-    questions = [
-        {
-            'question_number': '1',
-            'body': 'What is the capital city of...?'
-        },
-        {
-            'question_number': '2',
-            'body': 'What is the sum of the equation'
-        }
-    ]
+    questions = Question.query.all()
+
     return render_template('q_answers.html', title = 'Test', questions = questions)
 
-@app.route('/admin_page')
-@login_required # this will force login to access the page
-def admin_page():
+# @app.route('/admin_page')
+# @login_required # this will force login to access the page
+# def admin_page():
   
-    return render_template('admin_page.html', title = 'Test')
+#     return render_template('admin_page.html', title = 'Test')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -79,3 +72,16 @@ def register():
             form.username.data, form.administrator.data))
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
+
+@app.route('/admin_page', methods=['GET', 'POST'])
+@login_required # this will force login to access the page
+def admin_page():
+    form = QuestionEntryForm()
+    if form.validate_on_submit():
+        question = Question(body = form.body.data, choice_1=form.choice_1.data, choice_2=form.choice_2.data,
+                            choice_3=form.choice_3.data, choice_4=form.choice_4.data, correct_answer=form.correct_answer.data)
+        db.session.add(question)
+        db.session.commit()
+        flash('Question has been set')
+        return redirect(url_for('index'))
+    return render_template('admin_page.html', title = 'Admin Page', form = form)
