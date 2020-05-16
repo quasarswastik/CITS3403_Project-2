@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    <h1>Hi {{current_user.username}} </h1>
+    <p><b>Users in Database:</b></p>
     {% for user in users %}
-    <h1>Hi, {{ user.username }}!</h1>
+    <p> - User {{user.id}}: {{user.username }}. Administrator = {{user.admin}} </p>
     {% endfor %}
 {% endblock %}

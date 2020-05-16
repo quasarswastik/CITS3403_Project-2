@@ -15,23 +15,14 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 @login_required # this will force login to access the page
 def index():
-    # Mock Users Object
-    users = [
-        {
-            'username': 'Craig'
-        },
-        {
-            'username': 'Swastik'
-        },
-        {
-            'username': 'Adam'
-        }
-    ]
+    # Fetch all users
+    users = User.query.all()
 
     return render_template('index.html', title = 'Home', users = users)
 
 
 @app.route('/taketest')
+@login_required # this will force login to access the page
 def take_test():
     # Mock Questions
     questions = [
@@ -45,6 +36,12 @@ def take_test():
         }
     ]
     return render_template('q_answers.html', title = 'Test', questions = questions)
+
+@app.route('/admin_page')
+@login_required # this will force login to access the page
+def admin_page():
+  
+    return render_template('admin_page.html', title = 'Test')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -64,12 +61,17 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username = form.username.data, email=form.email.data)
+        user = User(username = form.username.data, email=form.email.data, admin=form.administrator.data)
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
