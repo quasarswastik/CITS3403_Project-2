@@ -4,3 +4,4 @@ venvv/*
 app/__pycache__/*
 __pycache__/*
 .vscode/*
+app.db'*.sqlite3' 
