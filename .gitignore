@@ -4,3 +4,9 @@ venvv/*
 app/__pycache__/*
 __pycache__/*
 .vscode/*
+__init__.pyc
+config.pyc
+routes.pyc
+./vscode/*
+app.db'*.sqlite3'
+app.db
