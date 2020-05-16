@@ -85,3 +85,34 @@ def admin_page():
         flash('Question has been set')
         return redirect(url_for('index'))
     return render_template('admin_page.html', title = 'Admin Page', form = form)
+
+@app.route('/results')
+def results():
+    # Mock Questions
+    questions = [
+        {
+            'body': 'What is the capital city of Australia?',
+            'correctAnswer': 'Canberra',
+            'answer2': 'Sydney',
+            'answer3': 'Perth',
+            'answer4': 'Melbourne'
+        },
+        {
+            'body': 'What is the capital city of England?',
+            'correctAnswer': 'London',
+            'answer2': 'Manchester',
+            'answer3': 'Sheffield',
+            'answer4': 'Liverpool'
+        }
+    ]
+
+    # Mock user answer
+    answers = [
+        {
+            'answer': 'Sydney'
+        },
+        {
+            'answer': 'London'
+        }
+    ]
+    return render_template('results.html', title = 'Results', questions=questions, answers=answers)
