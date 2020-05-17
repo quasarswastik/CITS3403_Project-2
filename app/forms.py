@@ -29,9 +29,8 @@ class RegistrationForm(FlaskForm):
 
 class QuestionEntryForm(FlaskForm):
     body = TextAreaField('Question Body', validators=[DataRequired()])
-    choice_1 = StringField('Choice Number 1', validators=[DataRequired()])
-    choice_2 = StringField('Choice Number 2', validators=[DataRequired()])
-    choice_3 = StringField('Choice Number 3', validators=[DataRequired()])
-    choice_4 = StringField('Choice Number 4', validators=[DataRequired()])
-    correct_answer = StringField('Correct Answer', validators=[DataRequired()])
+    correctAnswer = StringField('Answer 1 (Correct)', validators=[DataRequired()])
+    answer2 = StringField('Answer 2 (Incorrect)', validators=[DataRequired()])
+    answer3 = StringField('Answer 3 (Incorrect)', validators=[DataRequired()])
+    answer4 = StringField('Answer 4 (Incorrect)', validators=[DataRequired()])
     submit = SubmitField('Enter Question')

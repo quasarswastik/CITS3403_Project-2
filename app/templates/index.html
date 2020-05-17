@@ -6,4 +6,8 @@
     {% for user in users %}
     <p> - User {{user.id}}: {{user.username }}. Administrator = {{user.admin}} </p>
     {% endfor %}
+    <p><b>Questions in Database:</b></p>
+    {% for question in questions %}
+    <p> - Question {{question.question_id}}: {{question.body }}</p>
+    {% endfor %}
 {% endblock %}

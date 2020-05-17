@@ -22,20 +22,6 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-class Question(db.Model):
-    question_id = db.Column(db.Integer, primary_key=True)
-    body = db.Column(db.String(256), index=True)
-    choice_1 = db.Column(db.String(64))
-    choice_2 = db.Column(db.String(64))
-    choice_3 = db.Column(db.String(64))
-    choice_4 = db.Column(db.String(64))
-    correct_answer = db.Column(db.String(64))
-
-    # tells how to display/print objects of this class, creates a format to follow for Python
-    def __repr__(self):
-        return '<Question {}, {}>'.format(self.question_id, self.body) 
-
-
 # for logging in the user
 @login.user_loader
 def load_user(id):
@@ -54,7 +40,7 @@ def load_user(id):
 
 # Question has text, a correct answer, three false answers
 class Question(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    question_id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256), index=True)
     # don't need to index the answers, all lookups will be for the question itself
     correctAnswer = db.Column(db.String(64))
@@ -62,9 +48,13 @@ class Question(db.Model):
     answer3 = db.Column(db.String(64))
     answer4 = db.Column(db.String(64))
 
-class UserAnswers(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.id'))
-    questionId = db.Column(db.Integer, db.ForeignKey('question.id'))
-    # store user's selected answer as the string value of the selected answer
-    answer = db.Column(db.String(64))
+    # tells how to display/print objects of this class, creates a format to follow for Python
+    def __repr__(self):
+        return '<Question {}, {}>'.format(self.question_id, self.body) 
+
+# class UserAnswers(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     userId = db.Column(db.Integer, db.ForeignKey('user.id'))
+#     questionId = db.Column(db.Integer, db.ForeignKey('question.question_id'))
+#     # store user's selected answer as the string value of the selected answer
+#     answer = db.Column(db.String(64))
