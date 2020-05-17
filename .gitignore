@@ -6,4 +6,3 @@ __pycache__/*
 .vscode/*
 app.db'*.sqlite3'
 app.db
-migrations/*
