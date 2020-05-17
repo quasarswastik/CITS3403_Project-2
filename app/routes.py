@@ -30,7 +30,7 @@ def take_test():
     questions = Question.query.all()
 
     for question in questions:
-        name = str(question.question_id) + '_answer'
+        name = str(question.question_id) + "_answer"
         checked = request.form[name]
         user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
         db.session.add(user_response)
