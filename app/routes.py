@@ -6,7 +6,7 @@ from app.forms import QuestionEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question
+from app.models import User, Question, UserAnswers
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -23,11 +23,19 @@ def index():
     return render_template('index.html', title = 'Home', users = users, questions = questions)
 
 
-@app.route('/taketest')
+@app.route('/taketest/', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def take_test():
     # Mock Questions
     questions = Question.query.all()
+
+    for question in questions:
+        name = str(question.question_id) + '_answer'
+        checked = request.form[name]
+        user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
+        db.session.add(user_response)
+        db.session.commit()
+
 
     return render_template('q_answers.html', title = 'Test', questions = questions)
 
