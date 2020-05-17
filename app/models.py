@@ -11,6 +11,7 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     admin = db.Column(db.Boolean)
+    answers = db.relationship('UserAnswers', backref='user', lazy='dynamic')
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
