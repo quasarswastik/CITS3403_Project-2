@@ -10,4 +10,8 @@
     {% for question in questions %}
     <p> - Question {{question.question_id}}: {{question.body }}</p>
     {% endfor %}
+    <p><b>Answers in Database:</b></p>
+    {% for answer in answers %}
+    <p> - Answer {{answer.id}}: User {{answer.userId}} | Question {{answer.questionId}} | Answer {{answer.answer}}</p>
+    {% endfor %}
 {% endblock %}

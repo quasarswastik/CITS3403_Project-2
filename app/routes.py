@@ -19,8 +19,8 @@ def index():
     # Fetch all users
     users = User.query.all()
     questions = Question.query.all()
-
-    return render_template('index.html', title = 'Home', users = users, questions = questions)
+    answers = UserAnswers.query.all()
+    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers)
 
 
 @app.route('/taketest/', methods=['GET', 'POST'])
@@ -29,15 +29,19 @@ def take_test():
     # Mock Questions
     questions = Question.query.all()
 
+    return render_template('q_answers.html', title = 'Test', questions = questions)
+
+@app.route('/postanswers/', methods=['POST'])
+@login_required
+def postanswers():
+    questions = Question.query.all()
     for question in questions:
         name = str(question.question_id) + "_answer"
         checked = request.form[name]
         user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
         db.session.add(user_response)
         db.session.commit()
-
-
-    return render_template('q_answers.html', title = 'Test', questions = questions)
+    return redirect(url_for('index'))
 
 # @app.route('/admin_page')
 # @login_required # this will force login to access the page

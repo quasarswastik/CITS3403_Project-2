@@ -2,19 +2,19 @@
 
 {% block content %}
 <div class="question_set" id="question_set">
-    <form action="/taketest/" method="post">
+    <form action="/postanswers/" method="post">
         
             {% for question in questions %}
             <div>
                 <h4 class="question_number">Question {{ question.question_id }}</h4>
                 <p>{{ question.body }}</p>
-                    <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="Selection_A">
+                    <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="{{ question.correctAnswer }}">
                     <label for="Selection_A">{{ question.correctAnswer }}</label><br>
-                    <input type="radio" id="Selection_B" name="{{ question.question_id }}_answer" value="Selection_B">
+                    <input type="radio" id="Selection_B" name="{{ question.question_id }}_answer" value="{{ question.answer2 }}">
                     <label for="Selection_B">{{ question.answer2 }}</label><br>
-                    <input type="radio" id="Selection_C" name="{{ question.question_id }}_answer" value="Selection_C">
+                    <input type="radio" id="Selection_C" name="{{ question.question_id }}_answer" value="{{ question.answer3 }}">
                     <label for="Selection_C">{{ question.answer3 }}</label><br>
-                    <input type="radio" id="Selection_D" name="{{ question.question_id }}_answer" value="Selection_D">
+                    <input type="radio" id="Selection_D" name="{{ question.question_id }}_answer" value="{{ question.answer4 }}">
                     <label for="Selection_D">{{ question.answer4 }}</label><br>
             </div>
             {% endfor %}
