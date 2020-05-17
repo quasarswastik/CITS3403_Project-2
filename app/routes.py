@@ -84,7 +84,7 @@ def admin_page():
         db.session.add(question)
         db.session.commit()
         flash('Question has been set')
-        return redirect(url_for('index'))
+        return redirect(url_for('admin_page'))
     return render_template('admin_page.html', title = 'Admin Page', form = form)
 
 @app.route('/results')
@@ -124,6 +124,6 @@ def theme():
     return render_template('theme.html', title = 'Theme')
 
 @app.route('/authors')
-def theme():
+def authors():
     # Fetch all users
     return render_template('authors.html', title = 'Authors')
