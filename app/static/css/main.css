@@ -1,0 +1,14 @@
+body    {
+  margin: 15px;
+  border: 10rem;
+  font-family: 'Exo 2', sans-serif;
+  /* use different font */
+  background-color: blue;
+}
+
+h1  {
+  font-family: 'Exo 2', sans-serif;
+  color: red;
+  
+}
+  
