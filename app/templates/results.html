@@ -2,6 +2,7 @@
 
 {% block content %}
 <div class="result_set" id="result_set">
+    <h3>Score: {{score}} out of {{question_count}}</h3>
     {% for question in questions %}
     {% set currentAnswer = answers[loop.index0] %}
     <div>
@@ -76,7 +77,7 @@
                     <td><input type="radio" disabled="disabled"></td>
                     <td>{{ question.answer4 }}</td>
                 </tr>
-            {% elif question.answer3 == currentAnswer.answer %}
+            {% elif question.answer4 == currentAnswer.answer %}
                 <tr>
                     <!-- mark as correct answer -->
                     <td><i class="material-icons">done</i></td>
