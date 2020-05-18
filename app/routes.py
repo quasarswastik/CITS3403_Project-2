@@ -108,7 +108,7 @@ def admin_page():
         return redirect(url_for('admin_page'))
     return render_template('admin_page.html', title = 'Admin Page', form = form)
 
-@app.route('/results')
+@app.route('/results', methods=['GET', 'POST'])
 def results():
     questions = Question.query.all()
     answers = UserAnswers.query.filter_by(userId=current_user.id)

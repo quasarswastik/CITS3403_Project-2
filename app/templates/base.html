@@ -30,6 +30,7 @@
                     <li><a href="{{ url_for('index') }}" class="nav-link">Home</a></li>
                     <li><a href="{{ url_for('take_test') }}" class="nav-link">Take Test</a></li>
                     <li><a href="{{ url_for('results') }}" class="nav-link">Results</a></li>
+                    <li><a href="{{ url_for('test_history') }}" class="nav-link">Test History</a></li>
                     <li><a href="{{ url_for('authors') }}" class="nav-link">Authors</a></li>
                     <li><a href="{{ url_for('theme') }}" class="nav-link">Theme</a></li>
                     {% if current_user.is_anonymous %}
