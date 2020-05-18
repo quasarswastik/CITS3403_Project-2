@@ -2,19 +2,25 @@
 
 {% block content %}
 <div class="question_set" id="question_set">
-    {% for question in questions %}
-    <div>
-        <h4 class="question_number">Question {{ question.question_id }}</h4>
-        <p>{{ question.body }}</p>
-            <input type="radio" id="Selection_A" name="answer" value="Selection_A">
-            <label for="Selection_A">{{ question.correctAnswer }}</label><br>
-            <input type="radio" id="Selection_B" name="answer" value="Selection_B">
-            <label for="Selection_B">{{ question.answer2 }}</label><br>
-            <input type="radio" id="Selection_C" name="answer" value="Selection_C">
-            <label for="Selection_C">{{ question.answer3 }}</label><br>
-            <input type="radio" id="Selection_D" name="answer" value="Selection_D">
-            <label for="Selection_D">{{ question.answer4 }}</label><br>
-    </div>
-    {% endfor %}
+    <form action="/postanswers/" method="post">
+        
+            {% for question in questions %}
+
+            <div>
+                <h4 class="question_number">Question {{ question.question_id }}</h4>
+                <p>{{ question.body }}</p>
+                    <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="{{ question.correctAnswer }}" required>
+                    <label for="Selection_A">{{ question.correctAnswer }}</label><br>
+                    <input type="radio" id="Selection_B" name="{{ question.question_id }}_answer" value="{{ question.answer2 }}">
+                    <label for="Selection_B">{{ question.answer2 }}</label><br>
+                    <input type="radio" id="Selection_C" name="{{ question.question_id }}_answer" value="{{ question.answer3 }}">
+                    <label for="Selection_C">{{ question.answer3 }}</label><br>
+                    <input type="radio" id="Selection_D" name="{{ question.question_id }}_answer" value="{{ question.answer4 }}">
+                    <label for="Selection_D">{{ question.answer4 }}</label><br>
+            </div>
+            {% endfor %}
+            <button name="SubmitTestBtn" type="submit">Submit Test</button>
+    </form>
+    
 </div>
 {% endblock %}
