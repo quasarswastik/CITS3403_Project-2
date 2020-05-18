@@ -6,7 +6,7 @@ from app.forms import QuestionEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question
+from app.models import User, Question, UserAnswers, UserAttempts
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -19,17 +19,39 @@ def index():
     # Fetch all users
     users = User.query.all()
     questions = Question.query.all()
+    answers = UserAnswers.query.all()
+    c_answers = UserAnswers.query.filter_by(userId=current_user.id).all()
+    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers)
 
-    return render_template('index.html', title = 'Home', users = users, questions = questions)
+
+@app.route('/test_history')
+@login_required # this will force login to access the page
+def test_history():
+    user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
+
+    return render_template('test_history.html', title = 'Attempts', user_attempts = user_attempts)
 
 
-@app.route('/taketest')
+@app.route('/taketest/', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def take_test():
     # Mock Questions
     questions = Question.query.all()
 
     return render_template('q_answers.html', title = 'Test', questions = questions)
+
+@app.route('/postanswers/', methods=['POST'])
+@login_required
+def postanswers():
+    questions = Question.query.all()
+    for question in questions:
+        name = str(question.question_id) + "_answer"
+        checked = request.form[name]
+        user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
+        db.session.add(user_response)
+        db.session.commit()
+    return redirect(url_for('index'))
+
 
 # @app.route('/admin_page')
 # @login_required # this will force login to access the page
@@ -84,39 +106,27 @@ def admin_page():
         db.session.add(question)
         db.session.commit()
         flash('Question has been set')
-        return redirect(url_for('index'))
+        return redirect(url_for('admin_page'))
     return render_template('admin_page.html', title = 'Admin Page', form = form)
 
-@app.route('/results')
+@app.route('/results', methods=['GET', 'POST'])
 def results():
-    # Mock Questions
-    questions = [
-        {
-            'body': 'What is the capital city of Australia?',
-            'correctAnswer': 'Canberra',
-            'answer2': 'Sydney',
-            'answer3': 'Perth',
-            'answer4': 'Melbourne'
-        },
-        {
-            'body': 'What is the capital city of England?',
-            'correctAnswer': 'London',
-            'answer2': 'Manchester',
-            'answer3': 'Sheffield',
-            'answer4': 'Liverpool'
-        }
-    ]
+    questions = Question.query.all()
+    answers = UserAnswers.query.filter_by(userId=current_user.id)
 
-    # Mock user answer
-    answers = [
-        {
-            'answer': 'Sydney'
-        },
-        {
-            'answer': 'London'
-        }
-    ]
-    return render_template('results.html', title = 'Results', questions=questions, answers=answers)
+    score = 0
+    question_count = len(questions)
+    for index, question in enumerate(questions):
+        if question.correctAnswer == answers[index].answer:
+            score += 1
+
+    
+
+    attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
+    db.session.add(attempt)
+    db.session.commit()
+
+    return render_template('results.html', title = 'Results', questions=questions, answers=answers, score=score, question_count=question_count)
 
 @app.route('/theme')
 def theme():
@@ -124,6 +134,6 @@ def theme():
     return render_template('theme.html', title = 'Theme')
 
 @app.route('/authors')
-def theme():
+def authors():
     # Fetch all users
     return render_template('authors.html', title = 'Authors')

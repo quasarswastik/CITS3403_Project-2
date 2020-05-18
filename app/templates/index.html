@@ -10,4 +10,12 @@
     {% for question in questions %}
     <p> - Question {{question.question_id}}: {{question.body }}</p>
     {% endfor %}
+    <p><b>Answers in Database:</b></p>
+    {% for answer in answers %}
+    <p> - Answer {{answer.id}}: User {{answer.userId}} | Question {{answer.questionId}} | Answer {{answer.answer}}</p>
+    {% endfor %}
+    <p><b>current_user answers:</b></p>
+    {% for c_answer in c_answers %}
+    <p> - Answer {{c_answer.id}}: User {{c_answer.userId}} | Question {{c_answer.questionId}} | Answer {{c_answer.answer}}</p>
+    {% endfor %}
 {% endblock %}

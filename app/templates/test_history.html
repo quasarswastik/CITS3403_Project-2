@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Test History for  {{current_user.username}} </h1>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Number Correct</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Number Incorrect</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Score</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Time of Test</th>
+        </tr>
+        {% for attempt in user_attempts %}
+        <tr>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.numberCorrect}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.numberIncorrect}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.score}} %</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.timeOfAttempt}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+    <!-- {% for attempt in user_attempts %}
+    <p> Attempt Number: {{attempt.attempt_id}} | Number Correct: {{attempt.numberCorrect}} | Number Incorrect: {{attempt.numberIncorrect}}
+        | Score: {{attempt.score}}% | Time of Test: {{attempt.timeOfAttempt}}
+    </p>
+    {% endfor %} -->
+{% endblock %}
