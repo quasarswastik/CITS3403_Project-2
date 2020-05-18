@@ -6,7 +6,7 @@ from app.forms import QuestionEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question, UserAnswers
+from app.models import User, Question, UserAnswers, UserAttempts
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -22,6 +22,14 @@ def index():
     answers = UserAnswers.query.all()
     c_answers = UserAnswers.query.filter_by(userId=current_user.id).all()
     return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers)
+
+
+@app.route('/test_history')
+@login_required # this will force login to access the page
+def test_history():
+    user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
+
+    return render_template('test_history.html', title = 'Attempts', user_attempts = user_attempts)
 
 
 @app.route('/taketest/', methods=['GET', 'POST'])
@@ -110,6 +118,10 @@ def results():
     for index, question in enumerate(questions):
         if question.correctAnswer == answers[index].answer:
             score += 1
+
+    attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
+    db.session.add(attempt)
+    db.session.commit()
 
     return render_template('results.html', title = 'Results', questions=questions, answers=answers, score=score, question_count=question_count)
 

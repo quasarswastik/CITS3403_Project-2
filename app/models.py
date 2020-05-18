@@ -2,6 +2,7 @@ from app import db, login
 # for passwords hash
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 # User class is inherited from databse model
 # All necessary fields are added as db column
@@ -63,3 +64,14 @@ class UserAnswers(db.Model):
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
         return '<User answer {}, {}, {}, {}>'.format(self.id, self.userId, self.questionId, self.answer) 
+
+class UserAttempts(db.Model):
+    attempt_id = db.Column(db.Integer, primary_key=True)
+    userId = db.Column(db.Integer, db.ForeignKey('user.id'))
+    numberCorrect = db.Column(db.Integer)
+    numberIncorrect = db.Column(db.Integer)
+    score = db.Column(db.String(4))
+    timeOfAttempt = db.Column(db.DateTime, index=True, default=datetime.now)
+
+    def __repr__(self):
+        return '<User Attempt {}, {}, {}, {}, {}, {}>'.format(self.attempt_id, self.userId, self.numberCorrect, self.numberIncorrect, self.score, self.timeOfAttempt)
