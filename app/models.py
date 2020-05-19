@@ -40,6 +40,15 @@ def load_user(id):
 #         return '<Question Set: {}'.format(self.setName)
 # ------------------------------------------------------------------------------------
 
+class QuestionSet(db.Model):
+    set_id = db.Column(db.Integer, primary_key=True)
+    set_name = db.Column(db.String(64))
+    creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def __repr__(self):
+        return '<Question Set {}'.format(self.set_name)
+
+
 # Question has text, a correct answer, three false answers
 class Question(db.Model):
     question_id = db.Column(db.Integer, primary_key=True)
@@ -49,6 +58,7 @@ class Question(db.Model):
     answer2 = db.Column(db.String(64))
     answer3 = db.Column(db.String(64))
     answer4 = db.Column(db.String(64))
+    setID = db.Column(db.Integer, db.ForeignKey('question_set.set_id'))
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
@@ -60,6 +70,7 @@ class UserAnswers(db.Model):
     questionId = db.Column(db.Integer, db.ForeignKey('question.question_id'))
     # store user's selected answer as the string value of the selected answer
     answer = db.Column(db.String(64))
+    setID = db.Column(db.Integer, db.ForeignKey('question_set.set_id'))
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):

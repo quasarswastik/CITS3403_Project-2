@@ -6,7 +6,7 @@ from app.forms import QuestionEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question, UserAnswers, UserAttempts
+from app.models import User, Question, UserAnswers, UserAttempts, QuestionSet
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -70,6 +70,7 @@ def login():
             flash('Invalid username or password')
             return redirect(url_for('login'))
         login_user(user, remember=form.remember_me.data)
+        logged_in_user = user.id
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('index')
@@ -100,9 +101,11 @@ def register():
 def admin_page():
     form = QuestionEntryForm()
     if form.validate_on_submit():
+        set = QuestionSet(set_name = form.questionset.data, creator_id = current_user.id)
         question = Question(body = form.body.data, correctAnswer=form.correctAnswer.data, answer2=form.answer2.data,
                             answer3=form.answer3.data, answer4=form.answer4.data)
         db.session.add(question)
+        db.session.add(set)
         db.session.commit()
         flash('Question has been set')
         return redirect(url_for('admin_page'))
