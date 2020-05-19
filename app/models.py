@@ -44,6 +44,7 @@ class QuestionSet(db.Model):
     set_id = db.Column(db.Integer, primary_key=True)
     set_name = db.Column(db.String(64))
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    questions = db.relationship('Question', backref='quiz', lazy='dynamic')
 
     def __repr__(self):
         return '<Question Set {}'.format(self.set_name)
