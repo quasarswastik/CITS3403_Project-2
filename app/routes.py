@@ -21,7 +21,8 @@ def index():
     questions = Question.query.all()
     answers = UserAnswers.query.all()
     c_answers = UserAnswers.query.filter_by(userId=current_user.id).all()
-    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers)
+    questionSets = QuestionSet.query.all()
+    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers, questionSets=questionSets)
 
 
 @app.route('/test_history')

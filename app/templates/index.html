@@ -18,4 +18,11 @@
     {% for c_answer in c_answers %}
     <p> - Answer {{c_answer.id}}: User {{c_answer.userId}} | Question {{c_answer.questionId}} | Answer {{c_answer.answer}}</p>
     {% endfor %}
+    <p><b>Question Sets in Database:</b></p>
+    {% for set in questionSets %}
+    <h4> - Set: {{set.set_name}}</h4>
+    {% for q in set.questions.all()%}
+    <p>   - Question {{q.question_id}}: {{q.body }}</p>
+    {% endfor %}
+    {% endfor %}
 {% endblock %}
