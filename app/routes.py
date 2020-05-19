@@ -118,10 +118,10 @@ def results():
     for index, question in enumerate(questions):
         if question.correctAnswer == answers[index].answer:
             score += 1
-
-    attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
-    db.session.add(attempt)
-    db.session.commit()
+    if question_count != 0:
+        attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
+        db.session.add(attempt)
+        db.session.commit()
 
     return render_template('results.html', title = 'Results', questions=questions, answers=answers, score=score, question_count=question_count)
 
