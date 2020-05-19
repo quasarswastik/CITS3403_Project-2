@@ -2,16 +2,9 @@
 
 {% block content %}
     <h1>Hi Administrator: {{current_user.username}} </h1>
-    <p>In this page, you will be able to edit and add Question sets</p>
+    <p>In this page, you will be able to edit and add questions</p>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
-        <p>
-            {{ form.questionset.label }}<br>
-            {{ form.questionset(size=256) }}<br>
-            {% for error in form.questionset.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
         <p>
             {{ form.body.label }}<br>
             {{ form.body(size=256) }}<br>

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectMultipleField, widgets
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User, Question
 
@@ -28,10 +28,18 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class QuestionEntryForm(FlaskForm):
-    questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
     body = TextAreaField('Question Body', validators=[DataRequired()])
     correctAnswer = StringField('Answer 1 (Correct)', validators=[DataRequired()])
     answer2 = StringField('Answer 2 (Incorrect)', validators=[DataRequired()])
     answer3 = StringField('Answer 3 (Incorrect)', validators=[DataRequired()])
     answer4 = StringField('Answer 4 (Incorrect)', validators=[DataRequired()])
     submit = SubmitField('Enter Question')
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+class QuestionSetEntryForm(FlaskForm):
+    questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
+    questions = MultiCheckboxField('Questions to Add', coerce=int)
+    submit = SubmitField('Submit Question Set')
