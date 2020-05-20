@@ -2,6 +2,21 @@
 
 {% block content %}
 <div class="question_set" id="question_set">
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.sets.label }}<br>
+            {{ form.sets }}
+            {% for error in form.sets.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+            {{ form.submit }}
+        </p>
+    </form>
+
+    <hr>
+
+    {% if noSet == False %}
     <form action="/postanswers/" method="post">
         
             {% for question in questions %}
@@ -21,6 +36,7 @@
             {% endfor %}
             <button name="SubmitTestBtn" type="submit">Submit Test</button>
     </form>
+    {% endif %}
     
 </div>
 {% endblock %}

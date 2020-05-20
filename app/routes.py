@@ -4,6 +4,7 @@ from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import QuestionEntryForm
 from app.forms import QuestionSetEntryForm
+from app.forms import SetSelect
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -36,10 +37,26 @@ def test_history():
 @app.route('/taketest/', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def take_test():
-    # Mock Questions
     questions = Question.query.all()
+    sets = QuestionSet.query.all()
+    form = SetSelect()
+    form.sets.choices = [(s.set_id, s.set_name) for s in sets]
+    form.sets.choices.insert(0, (0,''))
+    noSet = True
 
-    return render_template('q_answers.html', title = 'Test', questions = questions)
+    if form.validate_on_submit():
+        if form.sets.data == 0:
+            # blank, display no questions
+            noSet = True
+        else:
+            questions = QuestionSet.query.get(form.sets.data).questions
+            noSet = False
+    return render_template('q_answers.html', title = 'Test', questions = questions, sets=sets, form=form, noSet=noSet)
+
+@app.route('/setselect', methods=['POST'])
+@login_required
+def setselect():
+    print("changed----------------------")
 
 @app.route('/postanswers/', methods=['POST'])
 @login_required

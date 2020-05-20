@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectMultipleField, widgets
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectMultipleField, widgets, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
 from app.models import User, Question
 
@@ -43,3 +43,7 @@ class QuestionSetEntryForm(FlaskForm):
     questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
     questions = MultiCheckboxField('Questions to Add', coerce=int)
     submit = SubmitField('Submit Question Set')
+
+class SetSelect(FlaskForm):
+    sets = SelectField('Question Set:', coerce=int)
+    submit = SubmitField('Load Question Set')
