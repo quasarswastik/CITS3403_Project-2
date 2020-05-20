@@ -90,17 +90,6 @@ class UserAnswers(db.Model):
     def __repr__(self):
         return '<User answer {}, {}, {}, {}>'.format(self.id, self.userId, self.questionId, self.answer) 
 
-class UserAttempts(db.Model):
-    attempt_id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.id'))
-    numberCorrect = db.Column(db.Integer)
-    numberIncorrect = db.Column(db.Integer)
-    score = db.Column(db.String(4))
-    timeOfAttempt = db.Column(db.DateTime, index=True, default=datetime.now)
-
-    def __repr__(self):
-        return '<User Attempt {}, {}, {}, {}, {}, {}>'.format(self.attempt_id, self.userId, self.numberCorrect, self.numberIncorrect, self.score, self.timeOfAttempt)
-
 class AnswerSet(db.Model):
     set_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
@@ -115,9 +104,6 @@ class AnswerSet(db.Model):
         # compute info for answer set
         score = 0
         answer_count = len(self.answers)
-        # for index, answer in enumerate(self.answers):
-        #     if answer.answer == self.qset.questions[index].correctAnswer:
-        #         score += 1
 
         for answer in self.answers:
             if answer.answer == Question.query.get(answer.questionId).correctAnswer:

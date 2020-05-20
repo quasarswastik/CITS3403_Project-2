@@ -8,7 +8,7 @@ from app.forms import SetSelect
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question, UserAnswers, UserAttempts, QuestionSet, AnswerSet
+from app.models import User, Question, UserAnswers, QuestionSet, AnswerSet
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -30,7 +30,6 @@ def index():
 @app.route('/test_history')
 @login_required # this will force login to access the page
 def test_history():
-    # user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
     asets = AnswerSet.query.filter_by(user_id=current_user.id).all()
     return render_template('test_history.html', title = 'Attempts', asets=asets)
 
@@ -79,22 +78,8 @@ def postanswers():
     aset.computeScore()
     db.session.add(aset)
     db.session.commit()
-    # question_count = len(questions)
-    # for index, question in enumerate(questions):
-    #     if question.correctAnswer == answers[index].answer:
-    #         score += 1
-    # if question_count != 0:
-    #     attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
-    #     db.session.add(attempt)
-    #     db.session.commit()
 
     return redirect(url_for('index'))
-
-# @app.route('/admin_page')
-# @login_required # this will force login to access the page
-# def admin_page():
-  
-#     return render_template('admin_page.html', title = 'Test')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -166,19 +151,6 @@ def add_set():
 @app.route('/results', methods=['GET', 'POST'])
 def results():
     asets = AnswerSet.query.filter_by(user_id=current_user.id)
-
-
-    # score = 0
-    # question_count = len(questions)
-    # for index, question in enumerate(questions):
-    #     if question.correctAnswer == answers[index].answer:
-    #         score += 1
-    # if question_count != 0:
-    #     attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
-    #     db.session.add(attempt)
-    #     db.session.commit()
-
-    # return render_template('results.html', title = 'Results', questions=questions, answers=answers, score=score, question_count=question_count)
     return render_template('results.html', title = 'Results', asets=asets)
 
 @app.route('/theme')
