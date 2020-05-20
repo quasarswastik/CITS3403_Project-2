@@ -21,8 +21,8 @@
     <p><b>Question Sets in Database:</b></p>
     {% for set in questionSets %}
     <h4> - Set: {{set.set_name}}</h4>
-    {% for q in set.questions.all()%}
-    <p>   - Question {{q.question_id}}: {{q.body }}</p>
+    {% for q in set.questions %}
+    <p>   - Questions: {{q.body}} </p>
     {% endfor %}
     {% endfor %}
 {% endblock %}

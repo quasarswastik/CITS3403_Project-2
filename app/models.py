@@ -40,11 +40,17 @@ def load_user(id):
 #         return '<Question Set: {}'.format(self.setName)
 # ------------------------------------------------------------------------------------
 
+# helper table for many-to-many questionset-to-questions relationship
+qset_q_assoc = db.Table('Quizzes',
+    db.Column('set_id', db.Integer, db.ForeignKey('question_set.set_id'), primary_key=True),
+    db.Column('question_id', db.Integer, db.ForeignKey('question.question_id'), primary_key=True)
+)
+
 class QuestionSet(db.Model):
     set_id = db.Column(db.Integer, primary_key=True)
     set_name = db.Column(db.String(64))
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    questions = db.relationship('Question', backref='quiz', lazy='dynamic')
+    questions = db.relationship('Question', secondary=qset_q_assoc)
 
     def __repr__(self):
         return '<Question Set {}'.format(self.set_name)
@@ -59,7 +65,6 @@ class Question(db.Model):
     answer2 = db.Column(db.String(64))
     answer3 = db.Column(db.String(64))
     answer4 = db.Column(db.String(64))
-    setID = db.Column(db.Integer, db.ForeignKey('question_set.set_id'))
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):

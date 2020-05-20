@@ -40,6 +40,7 @@
                     {% endif %}
                     {% if current_user.admin %}
                     <li><a href="{{ url_for('admin_page') }}" class="nav-link">Admin Page</a></li>
+                    <li><a href="{{ url_for('add_set') }}" class="nav-link">Add Question Set</a></li>
                     {% endif %}
                </ul>
             </div>

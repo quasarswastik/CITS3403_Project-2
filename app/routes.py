@@ -3,6 +3,7 @@ from app import app, db
 from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import QuestionEntryForm
+from app.forms import QuestionSetEntryForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -23,7 +24,6 @@ def index():
     c_answers = UserAnswers.query.filter_by(userId=current_user.id).all()
     questionSets = QuestionSet.query.all()
     return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers, questionSets=questionSets)
-
 
 @app.route('/test_history')
 @login_required # this will force login to access the page
@@ -102,15 +102,29 @@ def register():
 def admin_page():
     form = QuestionEntryForm()
     if form.validate_on_submit():
-        set = QuestionSet(set_name = form.questionset.data, creator_id = current_user.id)
         question = Question(body = form.body.data, correctAnswer=form.correctAnswer.data, answer2=form.answer2.data,
                             answer3=form.answer3.data, answer4=form.answer4.data)
         db.session.add(question)
-        db.session.add(set)
         db.session.commit()
         flash('Question has been set')
         return redirect(url_for('admin_page'))
     return render_template('admin_page.html', title = 'Admin Page', form = form)
+
+@app.route('/add_set', methods=['GET', 'POST'])
+@login_required # this will force login to access the page
+def add_set():
+    form = QuestionSetEntryForm()
+    form.questions.choices = [(q.question_id, q.body) for q in Question.query.all()]
+    if form.validate_on_submit():
+        set = QuestionSet(set_name = form.questionset.data, creator_id = current_user.id)
+        for q_id in form.questions.data:
+            set.questions.append(Question.query.get(q_id))
+        db.session.add(set)
+        db.session.commit()
+        flash('Question Set has been added')
+        return redirect(url_for('add_set'))
+    return render_template('add_set.html', title = 'Add Question Sets', form = form)
+
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
