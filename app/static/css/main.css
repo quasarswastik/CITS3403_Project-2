@@ -1,14 +1,147 @@
 body    {
-  margin: 15px;
-  border: 10rem;
-  font-family: 'Exo 2', sans-serif;
-  /* use different font */
-  background-color: blue;
+    margin: 15px;
+    border: 10rem;
+    font-family: 'Roboto', sans-serif;
+    font-size: medium;
+    /* use different font */
+    background-color: #D5D8DC;
 }
 
-h1  {
-  font-family: 'Exo 2', sans-serif;
-  color: red;
-  
+div.headfoot {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    padding-bottom: 1rem;
+    text-align: center;
 }
-  
+
+.content    {
+  padding-top: 3rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-bottom: 1rem;
+  /* font-size: large; */
+  /* text-align: center; */
+}
+
+.important_heading  {
+  font-size: xx-large;
+  text-align: center;
+}
+.important  {
+  text-align: center;
+}
+
+
+
+.text_basis  {
+  border-radius: 10px;
+  background-color: #EAECEE;
+}
+
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+textarea:focus  {
+  border: 2px solid #E67E22;
+  background-color: hsl(39, 100%, 74%);
+}
+
+a:hover {
+  color: red;
+}
+
+table {
+  border-collapse: separate;
+  width: 100%;
+  border-radius: 10px;
+}
+
+th, td {
+  text-align: center;
+  padding: 8px;
+}
+
+th {
+  background-color: #E67E22;
+  color: white;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:nth-child(odd) {
+  background-color: #e6e0dc;
+}
+
+input:focus {
+  border: 2px solid #E67E22;
+  background-color: hsl(39, 100%, 74%);
+}
+
+input[type=button], input[type=submit]  {
+  background-color: rgb(122, 221, 125);
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}

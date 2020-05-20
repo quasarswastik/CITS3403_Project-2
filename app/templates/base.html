@@ -7,6 +7,7 @@
         {% else %}
         <title>Welcome to the Project 2 Quiz</title>
         {% endif %}
+        <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/UWA.png') }}">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="CITS3403 Project 2">
@@ -14,9 +15,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
         <!-- <script src="JavaScript/interactive.js"></script> -->
     </head>
 
@@ -46,7 +47,7 @@
             </div>
         </nav>
 
-        <div class="container">
+        <!-- <div class="container"> -->
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
@@ -57,7 +58,18 @@
         </ul>
         {% endif %}
         {% endwith %}
+        <div class = "content text_basis">
         {% block content %}{% endblock %}
         </div>
+        <!-- </div> -->
+        <!-- Footer -->
+    <div class="headfoot text_basis">
+        <footer>
+          <p>Created By: Adam, Craig and Swastik<br>Contact information: <a
+              href="mailto:22556239@student.uwa.edu.au">
+              Email-address</a></p>
+        </footer>
+      </div>
     </body>
+
 </html>
