@@ -9,12 +9,12 @@
             <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Score</th>
             <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Time of Test</th>
         </tr>
-        {% for attempt in user_attempts %}
+        {% for set in asets %}
         <tr>
-            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.numberCorrect}}</td>
-            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.numberIncorrect}}</td>
-            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.score}} %</td>
-            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{attempt.timeOfAttempt}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.numberCorrect}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.numberIncorrect}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.score}} %</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.timeOfAttempt}}</td>
         </tr>
         {% endfor %}
     </table>

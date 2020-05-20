@@ -30,9 +30,9 @@ def index():
 @app.route('/test_history')
 @login_required # this will force login to access the page
 def test_history():
-    user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
-
-    return render_template('test_history.html', title = 'Attempts', user_attempts = user_attempts)
+    # user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
+    asets = AnswerSet.query.filter_by(user_id=current_user.id).all()
+    return render_template('test_history.html', title = 'Attempts', asets=asets)
 
 
 @app.route('/taketest/', methods=['GET', 'POST'])
@@ -75,9 +75,18 @@ def postanswers():
         user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
         db.session.add(user_response)
         aset.answers.append(user_response)
+
+    aset.computeScore()
     db.session.add(aset)
     db.session.commit()
-
+    # question_count = len(questions)
+    # for index, question in enumerate(questions):
+    #     if question.correctAnswer == answers[index].answer:
+    #         score += 1
+    # if question_count != 0:
+    #     attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
+    #     db.session.add(attempt)
+    #     db.session.commit()
 
     return redirect(url_for('index'))
 

@@ -66,6 +66,7 @@ class Question(db.Model):
     answer2 = db.Column(db.String(64))
     answer3 = db.Column(db.String(64))
     answer4 = db.Column(db.String(64))
+    allUserAnswers = db.relationship('UserAnswers', backref='question', lazy='dynamic')
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
@@ -105,6 +106,26 @@ class AnswerSet(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     qset_id = db.Column(db.Integer, db.ForeignKey('question_set.set_id'))
     answers = db.relationship('UserAnswers', secondary=aset_a_assoc)
+    numberCorrect = db.Column(db.Integer)
+    numberIncorrect = db.Column(db.Integer)
+    score = db.Column(db.String(4))
+    timeOfAttempt = db.Column(db.DateTime, index=True, default=datetime.now)
+
+    def computeScore(self):
+        # compute info for answer set
+        score = 0
+        answer_count = len(self.answers)
+        # for index, answer in enumerate(self.answers):
+        #     if answer.answer == self.qset.questions[index].correctAnswer:
+        #         score += 1
+
+        for answer in self.answers:
+            if answer.answer == Question.query.get(answer.questionId).correctAnswer:
+                score += 1
+
+        self.numberCorrect=score
+        self.numberIncorrect=answer_count-score
+        self.score = score/answer_count * 100
 
     def __repr__(self):
-        return '<Question Set {}'.format(self.set_name)
+        return '<Answer Set {}'.format(self.set_id)
