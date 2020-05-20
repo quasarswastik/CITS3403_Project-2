@@ -28,6 +28,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class QuestionEntryForm(FlaskForm):
+    questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
     body = TextAreaField('Question Body', validators=[DataRequired()])
     correctAnswer = StringField('Answer 1 (Correct)', validators=[DataRequired()])
     answer2 = StringField('Answer 2 (Incorrect)', validators=[DataRequired()])
