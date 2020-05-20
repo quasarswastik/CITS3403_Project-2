@@ -1,24 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi {{current_user.username}} </h1>
-    <p><b>Users in Database:</b></p>
-    {% for user in users %}
-    <p> - User {{user.id}}: {{user.username }}. Administrator = {{user.admin}} </p>
-    {% endfor %}
-    <p><b>Questions in Database:</b></p>
-    {% for question in questions %}
-    <p> - Question {{question.question_id}}: {{question.body }}</p>
-    {% endfor %}
-    <p><b>Answers in Database:</b></p>
+    <h1 class = important_heading>Hi {{current_user.username}} <br><br></h1>
+    <p class = important><b>Current users in Database</b></p>
+    <table>
+        <tr>
+            <th>Username</th>
+            <th>Administrator</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{user.username }}</td>
+            <td>{{user.admin}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="important"><br><b>Questions in Database</b></p>
+    <table>
+        <tr>
+            <th>Question Number</th>
+            <th>Question</th>
+        </tr>
+        {% for question in questions %}
+        <tr>
+            <td>{{question.question_id}}</td>
+            <td>{{question.body }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="important"><br><b>Answers in Database:</b></p>
     {% for answer in answers %}
     <p> - Answer {{answer.id}}: User {{answer.userId}} | Question {{answer.questionId}} | Answer {{answer.answer}}</p>
     {% endfor %}
-    <p><b>current_user answers:</b></p>
+    <p class="important"><br><b>current_user answers:</b></p>
     {% for c_answer in c_answers %}
     <p> - Answer {{c_answer.id}}: User {{c_answer.userId}} | Question {{c_answer.questionId}} | Answer {{c_answer.answer}}</p>
     {% endfor %}
-    <p><b>Question Sets in Database:</b></p>
+    <p class="important"><br><b>Question Sets in Database:</b></p>
     {% for set in questionSets %}
     <h4> - Set: {{set.set_name}}</h4>
     {% for q in set.questions %}
