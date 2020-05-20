@@ -25,4 +25,11 @@
     <p>   - Questions: {{q.body}} </p>
     {% endfor %}
     {% endfor %}
+    <p><b>Answer Sets in Database:</b></p>
+    {% for set in answerSets %}
+    <h4> - Set: {{set.set_id}}</h4>
+    {% for a in set.answers %}
+    <p>   - Answers: {{a.answer}} </p>
+    {% endfor %}
+    {% endfor %}
 {% endblock %}

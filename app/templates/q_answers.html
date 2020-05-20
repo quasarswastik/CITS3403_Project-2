@@ -18,7 +18,7 @@
 
     {% if noSet == False %}
     <form action="/postanswers/" method="post">
-        
+            <input id="qSet" name="qSet" type="hidden" value="{{ activeQSet }}">
             {% for question in questions %}
 
             <div>
