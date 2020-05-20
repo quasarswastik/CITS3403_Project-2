@@ -4,6 +4,7 @@
     <h1>Test History for  {{current_user.username}} </h1>
     <table style="width: 100%; border-collapse: collapse;">
         <tr>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Question Set</th>
             <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Number Correct</th>
             <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Number Incorrect</th>
             <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Score</th>
@@ -11,6 +12,7 @@
         </tr>
         {% for set in asets %}
         <tr>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.qset.set_name}}</td>
             <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.numberCorrect}}</td>
             <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.numberIncorrect}}</td>
             <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{set.score}} %</td>
