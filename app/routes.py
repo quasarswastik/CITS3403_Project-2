@@ -4,10 +4,11 @@ from app.forms import LoginForm
 from app.forms import RegistrationForm
 from app.forms import QuestionEntryForm
 from app.forms import QuestionSetEntryForm
+from app.forms import SetSelect
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
-from app.models import User, Question, UserAnswers, UserAttempts, QuestionSet
+from app.models import User, Question, UserAnswers, QuestionSet, AnswerSet
 # for pages where login is mandatory
 from flask_login import login_required
 # helps in redirecting traffic
@@ -23,41 +24,62 @@ def index():
     answers = UserAnswers.query.all()
     c_answers = UserAnswers.query.filter_by(userId=current_user.id).all()
     questionSets = QuestionSet.query.all()
-    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers, questionSets=questionSets)
+    answerSets = AnswerSet.query.all()
+    return render_template('index.html', title = 'Home', users = users, questions = questions, answers=answers, c_answers=c_answers, questionSets=questionSets, answerSets=answerSets)
 
 @app.route('/test_history')
 @login_required # this will force login to access the page
 def test_history():
-    user_attempts = UserAttempts.query.filter_by(userId=current_user.id).all()
-
-    return render_template('test_history.html', title = 'Attempts', user_attempts = user_attempts)
+    asets = AnswerSet.query.filter_by(user_id=current_user.id).all()
+    return render_template('test_history.html', title = 'Attempts', asets=asets)
 
 
 @app.route('/taketest/', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def take_test():
-    # Mock Questions
     questions = Question.query.all()
+    sets = QuestionSet.query.all()
+    form = SetSelect()
+    form.sets.choices = [(s.set_id, s.set_name) for s in sets]
+    form.sets.choices.insert(0, (0,''))
+    noSet = True
+    activeQSet = 0
 
-    return render_template('q_answers.html', title = 'Test', questions = questions)
+    if form.validate_on_submit():
+        if form.sets.data == 0:
+            # blank, display no questions
+            noSet = True
+        else:
+            questions = QuestionSet.query.get(form.sets.data).questions
+            noSet = False
+            activeQSet = form.sets.data
+    return render_template('q_answers.html', title = 'Test', questions = questions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet)
+
+@app.route('/setselect', methods=['POST'])
+@login_required
+def setselect():
+    print("changed----------------------")
 
 @app.route('/postanswers/', methods=['POST'])
 @login_required
 def postanswers():
-    questions = Question.query.all()
+    activeQSet = request.form["qSet"]
+    questions = QuestionSet.query.get(activeQSet).questions
+    aset = AnswerSet(user_id = current_user.id, qset_id = activeQSet)
+
+    # create answer records and associate them with an answer set
     for question in questions:
         name = str(question.question_id) + "_answer"
         checked = request.form[name]
         user_response = UserAnswers(userId = current_user.id, questionId = question.question_id, answer = checked)
         db.session.add(user_response)
-        db.session.commit()
-    return redirect(url_for('index'))
+        aset.answers.append(user_response)
 
-# @app.route('/admin_page')
-# @login_required # this will force login to access the page
-# def admin_page():
-  
-#     return render_template('admin_page.html', title = 'Test')
+    aset.computeScore()
+    db.session.add(aset)
+    db.session.commit()
+
+    return redirect(url_for('index'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -128,20 +150,8 @@ def add_set():
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
-    questions = Question.query.all()
-    answers = UserAnswers.query.filter_by(userId=current_user.id)
-
-    score = 0
-    question_count = len(questions)
-    for index, question in enumerate(questions):
-        if question.correctAnswer == answers[index].answer:
-            score += 1
-    if question_count != 0:
-        attempt = UserAttempts(userId = current_user.id, numberCorrect = score, numberIncorrect = (question_count - score), score = score / question_count * 100)
-        db.session.add(attempt)
-        db.session.commit()
-
-    return render_template('results.html', title = 'Results', questions=questions, answers=answers, score=score, question_count=question_count)
+    asets = AnswerSet.query.filter_by(user_id=current_user.id)
+    return render_template('results.html', title = 'Results', asets=asets)
 
 @app.route('/theme')
 def theme():

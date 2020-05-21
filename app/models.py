@@ -51,6 +51,7 @@ class QuestionSet(db.Model):
     set_name = db.Column(db.String(64))
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     questions = db.relationship('Question', secondary=qset_q_assoc)
+    asets = db.relationship('AnswerSet', backref='qset', lazy='dynamic')
 
     def __repr__(self):
         return '<Question Set {}'.format(self.set_name)
@@ -65,10 +66,17 @@ class Question(db.Model):
     answer2 = db.Column(db.String(64))
     answer3 = db.Column(db.String(64))
     answer4 = db.Column(db.String(64))
+    allUserAnswers = db.relationship('UserAnswers', backref='question', lazy='dynamic')
 
     # tells how to display/print objects of this class, creates a format to follow for Python
     def __repr__(self):
         return '<Question {}, {}>'.format(self.question_id, self.body) 
+
+# helper table for many-to-many questionset-to-questions relationship
+aset_a_assoc = db.Table('Answer Sets',
+    db.Column('set_id', db.Integer, db.ForeignKey('answer_set.set_id'), primary_key=True),
+    db.Column('answer_id', db.Integer, db.ForeignKey('user_answers.id'), primary_key=True)
+)
 
 class UserAnswers(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -82,13 +90,28 @@ class UserAnswers(db.Model):
     def __repr__(self):
         return '<User answer {}, {}, {}, {}>'.format(self.id, self.userId, self.questionId, self.answer) 
 
-class UserAttempts(db.Model):
-    attempt_id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey('user.id'))
+class AnswerSet(db.Model):
+    set_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    qset_id = db.Column(db.Integer, db.ForeignKey('question_set.set_id'))
+    answers = db.relationship('UserAnswers', secondary=aset_a_assoc)
     numberCorrect = db.Column(db.Integer)
     numberIncorrect = db.Column(db.Integer)
     score = db.Column(db.String(4))
     timeOfAttempt = db.Column(db.DateTime, index=True, default=datetime.now)
 
+    def computeScore(self):
+        # compute info for answer set
+        score = 0
+        answer_count = len(self.answers)
+
+        for answer in self.answers:
+            if answer.answer == Question.query.get(answer.questionId).correctAnswer:
+                score += 1
+
+        self.numberCorrect=score
+        self.numberIncorrect=answer_count-score
+        self.score = score/answer_count * 100
+
     def __repr__(self):
-        return '<User Attempt {}, {}, {}, {}, {}, {}>'.format(self.attempt_id, self.userId, self.numberCorrect, self.numberIncorrect, self.score, self.timeOfAttempt)
+        return '<Answer Set {}'.format(self.set_id)
