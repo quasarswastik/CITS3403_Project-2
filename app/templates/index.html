@@ -38,14 +38,14 @@
     {% endfor %}
     <p class="important"><br><b>Question Sets in Database:</b></p>
     {% for set in questionSets %}
-    <h4> - Set: {{set.set_name}}</h4>
+    <h4 style="text-decoration: underline;"> Set: {{set.set_name}}</h4>
     {% for q in set.questions %}
     <p>   - Questions: {{q.body}} </p>
     {% endfor %}
     {% endfor %}
-    <p><b>Answer Sets in Database:</b></p>
+    <p class="important"><b>Answer Sets in Database:</b></p>
     {% for set in answerSets %}
-    <h4> - Set: {{set.set_id}}</h4>
+    <h4 style="text-decoration: underline;"> Set: {{set.set_id}}</h4>
     {% for a in set.answers %}
     <p>   - Answers: {{a.answer}} </p>
     {% endfor %}

@@ -1,0 +1,213 @@
+
+body    {
+    margin: 15px;
+    border: 10rem;
+    font-family: 'Exo 2', sans-serif;
+    font-size: medium;
+    /* use different font */
+    background-color: #F7F9F9;
+}
+
+.navbar-default {
+    background-color: white;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    text-shadow: 0 0 5px rgba(235, 78, 5, 0.877);
+    background-color: rgba(24, 16, 16, 0.548);
+    color: white;
+}
+
+div.headfoot {
+    margin: 0 auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-left: 10rem;
+    padding-right: 10rem;
+    padding-bottom: 1rem;
+    text-align: center;
+    max-width: 1024px;
+
+}
+
+.content    {
+  padding-top: 3rem;
+  padding-left: 5rem;
+  padding-right: 5rem;
+  padding-bottom: 1rem;
+  margin: 0 auto;
+  max-width: 1024px;
+  /* font-size: large; */
+  /* text-align: center; */
+}
+
+.important_heading  {
+  font-size: xx-large;
+  text-align: center;
+}
+.important  {
+  text-align: center;
+}
+
+
+
+.text_basis  {
+    box-shadow: 5px 10px 8px 8px rgba(17, 17, 17, .06);
+    background-color: white;
+    /* display: flex; */
+    /* width: 50%; */
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 15px 15px 15px 15px;
+    /* border-left:.25em solid coral; */
+    /* margin-left: 25px;
+    margin-top: -15px; */
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border-radius: 3px;
+    outline: none;
+}
+
+input[type=radio] {
+    margin-right: 5px;
+    margin-left: 10px;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+textarea:focus  {
+  border: 2px solid #E67E22;
+  background-color: white;
+}
+
+a:hover {
+  color: red;
+}
+
+table {
+  border-collapse: separate;
+  width: 100%;
+  border-radius: 10px;
+}
+
+table.answer_table {
+    border-collapse: separate;
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    }
+
+table.answer_table th, table.answer_table td {
+  border: 0.5px  solid rgba(36, 31, 31, 0.562);
+  width: fit-content;
+  text-align: center;
+  padding: 8px;
+}
+
+
+th, td {
+    text-align: center;
+    padding: 8px;   
+}
+
+th {
+  background-color: #E67E22;
+  color: white;
+  text-align: center;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+tr:nth-child(odd) {
+  background-color: #e6e0dc;
+}
+
+input:focus {
+    box-shadow: 0 0 8px 1px rgba(92, 222, 255, 0.747);
+    border: 1px solid #d9dce5;    
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+
+input[type=button], input[type=submit]  {
+  background-color: rgb(90, 214, 94);
+  border: none;
+  height: 50px;
+  width: 250px;
+  border-radius: 5px;
+  color: white;
+  /* padding: 16px 32px; */
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.question_number {
+    font-weight: bold;
+}
+
+.question_block {
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+input[type=radio] {
+    /* display: inline; */
+    text-align: left;
+}
+
+
+/* Customize the label (the container) */
+.container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
