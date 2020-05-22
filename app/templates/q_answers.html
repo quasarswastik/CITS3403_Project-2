@@ -21,7 +21,7 @@
             <input id="qSet" name="qSet" type="hidden" value="{{ activeQSet }}">
             {% for question in questions %}
 
-            <div>
+            <div class="question_block">
                 <h4 class="question_number">Question {{ question.question_id }}</h4>
                 <p>{{ question.body }}</p>
                     <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="{{ question.correctAnswer }}" required>
