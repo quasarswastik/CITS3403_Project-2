@@ -17,8 +17,9 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Baloo+2&family=Exo+2&display=swap" rel="stylesheet">
         <!-- <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}"> -->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/main_2.css') }}">
@@ -39,14 +40,16 @@
                     <li><a href="{{ url_for('test_history') }}" class="nav-link">Test History</a></li>
                     <li><a href="{{ url_for('authors') }}" class="nav-link">Authors</a></li>
                     <li><a href="{{ url_for('theme') }}" class="nav-link">Theme</a></li>
+
+                    {% if current_user.admin %}
+                    <li><a href="{{ url_for('admin_page') }}" class="nav-link">Admin: Add Questions</a></li>
+                    <li><a href="{{ url_for('add_set') }}" class="nav-link">Admin: Add Question Sets</a></li>
+                    {% endif %}
+
                     {% if current_user.is_anonymous %}
                     <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
                     {% else %}
                     <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
-                    {% endif %}
-                    {% if current_user.admin %}
-                    <li><a href="{{ url_for('admin_page') }}" class="nav-link">Admin Page</a></li>
-                    <li><a href="{{ url_for('add_set') }}" class="nav-link">Add Question Set</a></li>
                     {% endif %}
                </ul>
             </div>

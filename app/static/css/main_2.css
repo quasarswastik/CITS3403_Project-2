@@ -6,6 +6,7 @@ body    {
     font-size: medium;
     /* use different font */
     background-color: #F7F9F9;
+    /* line-height: normal; */
 }
 
 .navbar-default {
@@ -42,6 +43,17 @@ div.headfoot {
   /* text-align: center; */
 }
 
+.author_block p {
+  line-height: 1.6em;
+}
+
+.author_block {
+  border-top: 2px solid #eee;
+  border-bottom: 2px solid #eee;
+  padding-left: 10px;
+  margin-bottom: 25px;
+}
+
 .important_heading  {
   font-size: xx-large;
   text-align: center;
@@ -50,19 +62,43 @@ div.headfoot {
   text-align: center;
 }
 
+span {
+  display: inline-block;
+  color: rgb(3, 95, 216);
+  font-size: 1.00em;
+  line-height: normal;
+}
+
+a.glyphicon {
+  color: #726b71;
+  text-decoration: none;
+  padding-right: 8px;
+}
+
+.contact_links a:hover, .contact_links a:active {
+  color: #09c;
+  text-decoration: none;
+}
+
+.page_heading{
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.sub_heading {
+    font-weight: bold;
+}
+
 
 
 .text_basis  {
     box-shadow: 5px 10px 8px 8px rgba(17, 17, 17, .06);
     background-color: white;
-    /* display: flex; */
-    /* width: 50%; */
     height: auto;
     border: 1px solid #eee;
     border-radius: 15px 15px 15px 15px;
-    /* border-left:.25em solid coral; */
-    /* margin-left: 25px;
-    margin-top: -15px; */
+
 }
 
 input[type=text], input[type=password] {
