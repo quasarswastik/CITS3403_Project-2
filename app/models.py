@@ -29,17 +29,6 @@ class User(UserMixin, db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
-# -------- possible implementation for collating questions into quizzes --------------
-# # Quiz is a set of question (one quiz to many questions relationship)
-# class Quiz(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     setName = db.Column(db.String(120), index=True)
-#     questions = db.relationship('Question', backref='quiz', lazy='dynamic')
-
-#     def __repr__(self):
-#         return '<Question Set: {}'.format(self.setName)
-# ------------------------------------------------------------------------------------
-
 # helper table for many-to-many questionset-to-questions relationship
 qset_q_assoc = db.Table('Quizzes',
     db.Column('set_id', db.Integer, db.ForeignKey('question_set.set_id'), primary_key=True),
@@ -48,7 +37,7 @@ qset_q_assoc = db.Table('Quizzes',
 
 class QuestionSet(db.Model):
     set_id = db.Column(db.Integer, primary_key=True)
-    set_name = db.Column(db.String(64))
+    set_name = db.Column(db.String(64), unique=True)
     creator_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     questions = db.relationship('Question', secondary=qset_q_assoc)
     asets = db.relationship('AnswerSet', backref='qset', lazy='dynamic')
