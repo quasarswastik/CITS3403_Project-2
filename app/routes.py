@@ -13,6 +13,7 @@ from app.models import User, Question, UserAnswers, QuestionSet, AnswerSet
 from flask_login import login_required
 # helps in redirecting traffic
 from werkzeug.urls import url_parse
+from numpy import random # used for randomizing question display order
 
 @app.route('/')
 @app.route('/index')
@@ -44,16 +45,33 @@ def take_test():
     form.sets.choices.insert(0, (0,''))
     noSet = True
     activeQSet = 0
+    randomizedQuestions = []
 
     if form.validate_on_submit():
         if form.sets.data == 0:
             # blank, display no questions
             noSet = True
         else:
-            questions = QuestionSet.query.get(form.sets.data).questions
-            noSet = False
             activeQSet = form.sets.data
-    return render_template('q_answers.html', title = 'Test', questions = questions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet)
+            questions = QuestionSet.query.get(activeQSet).questions
+            noSet = False
+            
+
+            for idx, question in enumerate(questions):
+                randomizedQuestions.append({
+                    'question_id': question.question_id,
+                    'body': question.body,
+                })
+                answers = [question.correctAnswer, question.answer2, question.answer3, question.answer4]
+                qOrder = random.permutation(4)
+                randomizedQuestions[idx].update({
+                    'a1': answers[qOrder[0]],
+                    'a2': answers[qOrder[1]],
+                    'a3': answers[qOrder[2]],
+                    'a4': answers[qOrder[3]]
+                })
+
+    return render_template('q_answers.html', title = 'Test', questions=randomizedQuestions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet)
 
 @app.route('/setselect', methods=['POST'])
 @login_required
