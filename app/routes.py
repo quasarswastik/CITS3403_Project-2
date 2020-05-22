@@ -58,13 +58,11 @@ def take_test():
             
 
             for idx, question in enumerate(questions):
+                answers = [question.correctAnswer, question.answer2, question.answer3, question.answer4]
+                qOrder = random.permutation(4)
                 randomizedQuestions.append({
                     'question_id': question.question_id,
                     'body': question.body,
-                })
-                answers = [question.correctAnswer, question.answer2, question.answer3, question.answer4]
-                qOrder = random.permutation(4)
-                randomizedQuestions[idx].update({
                     'a1': answers[qOrder[0]],
                     'a2': answers[qOrder[1]],
                     'a3': answers[qOrder[2]],
