@@ -9,15 +9,15 @@
         The purpose of this website is to deliver an assessable quiz for users to take. The design is that of a General-purpose quiz such that questions of any category can be used. It is entirely up to the administrator as to the type of questions, as well as the level of difficulty.
     </p>
     <p>
-        In order for the quiz system to function correctly, an Administrator must first set up some questions on the page labelled <span>'Admin: Add Questions'</span>.<br>
-        Then, once some questions are set, they can be added to a <span>'Question Set'</span>. The Question Set is a collection of questions that may belong to a particular theme or category, at the Administrator's discretion.
+        In order for the quiz system to function correctly, an Administrator must first set up some questions on the page labelled <a href="{{ url_for('admin_page') }}">'Admin: Add Questions'</a>.<br>
+        Then, once some questions are set, they can be added to a <a href="{{ url_for('add_set') }}">'Question Set'</a>. The Question Set is a collection of questions that may belong to a particular theme or category, at the Administrator's discretion.
     </p>
     <p>
-        When a user clicks on the <span>'Take Test'</span> page, they are presented with a choice of which question set to take. Once they have made a selection from the drop-down menu, clicking the buttom loads the question with multi-choice answer selections.
+        When a user clicks on the <a href="{{ url_for('take_test') }}">'Take Test'</a> page, they are presented with a choice of which question set to take. Once they have made a selection from the drop-down menu, clicking the buttom loads the question with multi-choice answer selections.
     </p>
     <p>
-        Upon completing the test, the user can then view the results for the test they just took on the <span>'Results'</span> page. Assessment of the quiz happens automatically.<br>
-        They can also view a complete history of all tests they have taken on the <span>'Test History'</span> page, which shows the user some basic statistics of their test such as the number of questions they got correct, the number incorrect, and their score. It also shows the time the test was taken.
+        Upon completing the test, the user can then view the results for the test they just took on the <a href="{{ url_for('results') }}">'Results'</a> page. Assessment of the quiz happens automatically.<br>
+        They can also view a complete history of all tests they have taken on the <a href="{{ url_for('test_history') }}">'Test History'</a> page, which shows the user some basic statistics of their test such as the number of questions they got correct, the number incorrect, and their score. It also shows the time the test was taken.
     </p>
     <p>
         As the quiz has a general-purpose setup, it can be used in many different scenarios. For example, a University or School could use it as a test for students. Another example could be a social media company using it as a fun pub quiz.
