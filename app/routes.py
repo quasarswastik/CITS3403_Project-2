@@ -71,11 +71,6 @@ def take_test():
 
     return render_template('q_answers.html', title = 'Test', questions=randomizedQuestions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet)
 
-@app.route('/setselect', methods=['POST'])
-@login_required
-def setselect():
-    print("changed----------------------")
-
 @app.route('/postanswers/', methods=['POST'])
 @login_required
 def postanswers():
