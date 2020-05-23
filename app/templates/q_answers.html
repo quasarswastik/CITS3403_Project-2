@@ -24,14 +24,14 @@
             <div class="question_block">
                 <h4 class="question_number">Question {{ question.question_id }}</h4>
                 <p>{{ question.body }}</p>
-                    <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="{{ question.correctAnswer }}" required>
-                    <label for="Selection_A">{{ question.correctAnswer }}</label><br>
-                    <input type="radio" id="Selection_B" name="{{ question.question_id }}_answer" value="{{ question.answer2 }}">
-                    <label for="Selection_B">{{ question.answer2 }}</label><br>
-                    <input type="radio" id="Selection_C" name="{{ question.question_id }}_answer" value="{{ question.answer3 }}">
-                    <label for="Selection_C">{{ question.answer3 }}</label><br>
-                    <input type="radio" id="Selection_D" name="{{ question.question_id }}_answer" value="{{ question.answer4 }}">
-                    <label for="Selection_D">{{ question.answer4 }}</label><br>
+                    <input type="radio" id="Selection_A" name="{{ question.question_id }}_answer" value="{{ question.a1 }}" required>
+                    <label for="Selection_A">{{ question.a1 }}</label><br>
+                    <input type="radio" id="Selection_B" name="{{ question.question_id }}_answer" value="{{ question.a2 }}">
+                    <label for="Selection_B">{{ question.a2 }}</label><br>
+                    <input type="radio" id="Selection_C" name="{{ question.question_id }}_answer" value="{{ question.a3 }}">
+                    <label for="Selection_C">{{ question.a3 }}</label><br>
+                    <input type="radio" id="Selection_D" name="{{ question.question_id }}_answer" value="{{ question.a4 }}">
+                    <label for="Selection_D">{{ question.a4 }}</label><br>
             </div>
             {% endfor %}
 

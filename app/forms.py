@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField, SelectMultipleField, widgets, SelectField
 from wtforms.validators import DataRequired, ValidationError, Email, EqualTo
-from app.models import User, Question
+from app.models import User, Question, QuestionSet
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -43,6 +43,11 @@ class QuestionSetEntryForm(FlaskForm):
     questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
     questions = MultiCheckboxField('Questions to Add', coerce=int)
     submit = SubmitField('Submit Question Set')
+
+    def validate_questionset(self, questionset):
+        qset = QuestionSet.query.filter_by(set_name=questionset.data).first()
+        if qset is not None:
+            raise ValidationError('Please use a different question set name.')
 
 class SetSelect(FlaskForm):
     sets = SelectField('Question Set:', coerce=int)

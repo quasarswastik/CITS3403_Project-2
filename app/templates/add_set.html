@@ -15,9 +15,6 @@
         <p>
             {{ form.questions.label }}<br>
             {{ form.questions() }}<br>
-            {% for error in form.questionset.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
         </p>
         <p>
             {{ form.submit() }}
