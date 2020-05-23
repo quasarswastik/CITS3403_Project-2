@@ -14,7 +14,7 @@ body    {
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-    text-shadow: 0 0 5px rgba(235, 78, 5, 0.877);
+    text-shadow: 0 0 5px rgba(19, 231, 72, 0.877);
     background-color: rgba(24, 16, 16, 0.548);
     color: white;
 }
