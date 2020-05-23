@@ -5,7 +5,7 @@ from app.forms import RegistrationForm
 from app.forms import QuestionEntryForm
 from app.forms import QuestionSetEntryForm
 from app.forms import SetSelect
-from app.forms import DeleteUserForm
+# from app.forms import DeleteUserForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
