@@ -2,6 +2,8 @@
 
 {% block content %}
     <h1>Add a new user</h1>
+    <p>Hi Administrator <span>{{current_user.username}}</span>. Use this page to add some new Users</p>
+    <br>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         <p>

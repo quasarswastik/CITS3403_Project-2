@@ -130,9 +130,13 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', title = 'Register', form = form)
 
-@app.route('/admin_page', methods=['GET', 'POST'])
+@app.route('/add_questions', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
-def admin_page():
+def add_questions():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
     form = QuestionEntryForm()
     if form.validate_on_submit():
         question = Question(body = form.body.data, correctAnswer=form.correctAnswer.data, answer2=form.answer2.data,
@@ -140,12 +144,16 @@ def admin_page():
         db.session.add(question)
         db.session.commit()
         flash('Question has been set')
-        return redirect(url_for('admin_page'))
-    return render_template('admin_page.html', title = 'Admin Page', form = form)
+        return redirect(url_for('add_questions'))
+    return render_template('admin_add_questions.html', title = 'Admin - Add Questions', form = form)
 
 @app.route('/add_set', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def add_set():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
     form = QuestionSetEntryForm()
     form.questions.choices = [(q.question_id, q.body) for q in Question.query.all()]
     if form.validate_on_submit():
@@ -156,11 +164,15 @@ def add_set():
         db.session.commit()
         flash('Question Set has been added')
         return redirect(url_for('add_set'))
-    return render_template('add_set.html', title = 'Add Question Sets', form = form)
+    return render_template('add_set.html', title = 'Admin - Add Question Sets', form = form)
 
-@app.route('/add_users/', methods=['GET', 'POST'])
+@app.route('/add_users', methods=['GET', 'POST'])
 @login_required
 def add_users():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
     form = RegistrationForm()
     if form.validate_on_submit():
         new_user = User(username = form.username.data, email=form.email.data, admin = False)
@@ -170,7 +182,7 @@ def add_users():
         flash('New User, {}, has been successfully created!'.format(form.username.data))
         return redirect(url_for('add_users'))
         
-    return render_template('admin_add_users.html', title = 'Add User', form = form)
+    return render_template('admin_add_users.html', title = 'Admin - Add Users', form = form)
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
