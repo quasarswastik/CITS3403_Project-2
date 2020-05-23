@@ -19,7 +19,7 @@
             {% endfor %}
         </p>
         <p>{{ form.remember_me(class_='checkmark') }}  {{ form.remember_me.label }}</p>
-        <p>{{ form.submit() }}</p>
+        <p>{{ form.submit(class_='login_btn') }}</p>
     </form>
     <p>Not Registered? <a href="{{ url_for('register') }}">Sign Up Here!</a></p>
 {% endblock %}

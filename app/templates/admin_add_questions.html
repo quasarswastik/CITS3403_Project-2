@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi Administrator: {{current_user.username}} </h1>
-    <p>In this page, you will be able to edit and add questions</p>
+    <h1>Add Questions</h1>
+    <p>Hi Administrator <span>{{current_user.username}}</span>. Use this page to edit and add questions</p>
+    <br>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         <p>

@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Hi Administrator: {{current_user.username}} </h1>
-    <p>In this page, you will be able to add new question sets, and attach questions to it</p>
+    <h1>Add Question Set</h1>
+    <p>Hi Administrator <span>{{current_user.username}}</span>. Use this page to add new Question Sets, and attach questions to it</p>
+    <br>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         <p>
