@@ -42,16 +42,27 @@
                     <li><a href="{{ url_for('theme') }}" class="nav-link">Theme</a></li>
 
                     {% if current_user.admin %}
-                    <li><a href="{{ url_for('admin_page') }}" class="nav-link">Admin: Add Questions</a></li>
-                    <li><a href="{{ url_for('add_set') }}" class="nav-link">Admin: Add Question Sets</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Administrator
+                        <span class="caret"></span></a>
+                        
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('admin_page') }}" class="nav-link">Add Questions</a></li>
+                            <li><a href="{{ url_for('add_set') }}" class="nav-link">Add Question Sets</a></li>
+                            <li><a href="{{ url_for('add_users') }}" class="nav-link">Add User</a></li>
+                        </ul>
+                    </li>
+                    {% endif %}
+                
+                    {% if current_user.is_anonymous %}
+                    <!-- <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li> -->
+                    <li><a href="{{ url_for('login') }}" class="nav-link"><span class="glyphicon glyphicon-log-in"></span>  Login</a></li>
+                    {% else %}
+                    <!-- <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li> -->
+                    <li><a href="{{ url_for('logout') }}" class="nav-link"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
                     {% endif %}
 
-                    {% if current_user.is_anonymous %}
-                    <li><a href="{{ url_for('login') }}" class="nav-link">Login</a></li>
-                    {% else %}
-                    <li><a href="{{ url_for('logout') }}" class="nav-link">Logout</a></li>
-                    {% endif %}
-               </ul>
+                </ul>
             </div>
         </nav>
 

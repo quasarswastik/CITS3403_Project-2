@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>Hi Administrator: {{current_user.username}} </h1>
-    <p>In this page, you will be able to edit and add questions</p>
+    <p>In this page, you will be able to add new question sets, and attach questions to it</p>
     <form action="" method="POST">
         {{ form.hidden_tag() }}
         <p>
