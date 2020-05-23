@@ -29,13 +29,39 @@
         {% endfor %}
     </table>
     <p class="important"><br><b>Answers in Database:</b></p>
-    {% for answer in answers %}
-    <p> - Answer {{answer.id}}: User {{answer.userId}} | Question {{answer.questionId}} | Answer {{answer.answer}}</p>
-    {% endfor %}
-    <p class="important"><br><b>current_user answers:</b></p>
-    {% for c_answer in c_answers %}
-    <p> - Answer {{c_answer.id}}: User {{c_answer.userId}} | Question {{c_answer.questionId}} | Answer {{c_answer.answer}}</p>
-    {% endfor %}
+    <table>
+        <tr>
+            <th>Answer Number</th>
+            <th>User</th>
+            <th>Question</th>
+            <th>Answer</th>
+        </tr>
+        {% for answer in answers %}
+        <tr>
+            <td>{{answer.id}}</td>
+            <td>{{answer.userId}}</td>
+            <td>{{answer.questionId}}</td>
+            <td>{{answer.answer}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <p class="important"><br><b>Current User's Answers:</b></p>
+    <table>
+        <tr>
+            <th>Answer Number</th>
+            <th>User</th>
+            <th>Question</th>
+            <th>Answer</th>
+        </tr>
+        {% for answer in answers %}
+        <tr>
+            <td>{{c_answer.id}}</td>
+            <td>{{c_answer.userId}}</td>
+            <td>{{c_answer.questionId}}</td>
+            <td>{{c_answer.answer}}</td>
+        </tr>
+        {% endfor %}
+    </table>
     <p class="important"><br><b>Question Sets in Database:</b></p>
     {% for set in questionSets %}
     <h4 style="text-decoration: underline;"> Set: {{set.set_name}}</h4>

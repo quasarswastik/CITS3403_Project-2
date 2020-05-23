@@ -185,6 +185,7 @@ def add_users():
     return render_template('admin_add_users.html', title = 'Admin - Add Users', form = form)
 
 @app.route('/results', methods=['GET', 'POST'])
+@login_required
 def results():
     asets = AnswerSet.query.filter_by(user_id=current_user.id)
     return render_template('results.html', title = 'Results', asets=asets)
