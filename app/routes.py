@@ -114,7 +114,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(url_for('login'))
 
 
 @app.route('/register', methods=['GET', 'POST'])
@@ -158,6 +158,19 @@ def add_set():
         return redirect(url_for('add_set'))
     return render_template('add_set.html', title = 'Add Question Sets', form = form)
 
+@app.route('/add_users/', methods=['GET', 'POST'])
+@login_required
+def add_users():
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        new_user = User(username = form.username.data, email=form.email.data, admin = False)
+        new_user.set_password(form.password.data)
+        db.session.add(new_user)
+        db.session.commit()
+        flash('New User, {}, has been successfully created!'.format(form.username.data))
+        return redirect(url_for('add_users'))
+        
+    return render_template('admin_add_users.html', title = 'Add User', form = form)
 
 @app.route('/results', methods=['GET', 'POST'])
 def results():
