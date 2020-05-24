@@ -9,3 +9,4 @@ app.db
 test.db
 *.pyc
 migrations/versions/__pycache__/*
+.coverage
