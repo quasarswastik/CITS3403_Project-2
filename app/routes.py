@@ -5,6 +5,7 @@ from app.forms import RegistrationForm
 from app.forms import QuestionEntryForm
 from app.forms import QuestionSetEntryForm
 from app.forms import SetSelect
+from app.forms import DeleteUserForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -202,3 +203,23 @@ def theme():
 def authors():
     # Page renders the code in the HTML template
     return render_template('authors.html', title = 'Authors')
+
+@app.route('/delete_users/', methods=['GET', 'POST'])
+@login_required
+def delete_users():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
+    form = DeleteUserForm()
+    form.users.choices = [(u.id, u.username) for u in User.query.all()]
+    
+    if form.validate_on_submit():
+        for q_id in form.users.data:
+            print(User.query.filter_by(id=q_id))
+            User.query.filter_by(id=q_id).delete()
+        db.session.commit()
+        flash('User(s) deleted successfully.')
+        return redirect(url_for('delete_users'))
+
+    return render_template('delete_user.html', title = 'Admin - Delete Users', form = form)
