@@ -60,3 +60,7 @@ class DeleteUserForm(FlaskForm):
 class DeleteQuestionSetsForm(FlaskForm):
     sets = MultiCheckboxField('Question Sets to Delete', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Delete Question Sets')
+
+class AdminUserResultsForm(FlaskForm):
+    user = SelectField('User', coerce=int)
+    submit = SubmitField('Load User Results')

@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, QuestionEntryForm, QuestionSetEntryForm, SetSelect, DeleteUserForm, DeleteQuestionSetsForm
+from app.forms import LoginForm, RegistrationForm, QuestionEntryForm, QuestionSetEntryForm, SetSelect, DeleteUserForm, DeleteQuestionSetsForm, AdminUserResultsForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -236,3 +236,27 @@ def delete_sets():
         return redirect(url_for('delete_users'))
 
     return render_template('delete_set.html', title = 'Admin - Delete Question Sets', form = form)
+
+@app.route('/admin_results/', methods=['GET', 'POST'])
+@login_required # this will force login to access the page
+def admin_results():
+    users = User.query.all()
+    asets = []
+    form = AdminUserResultsForm()
+    form.user.choices = [(u.id, u.username) for u in users]
+    form.user.choices.insert(0, (0,''))
+    noUser = True
+    activeUser = 0
+
+    if form.validate_on_submit():
+        if form.user.data == 0:
+            # blank, display no questions
+            noSet = True
+            print('yoooo')
+        else:
+            print('hey')
+            activeUser = form.user.data
+            asets = AnswerSet.query.filter_by(user_id=activeUser)
+            noSet = False
+
+    return render_template('admin_results.html', title = 'View Results', asets=asets, form=form, noUser=noUser)
