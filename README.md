@@ -18,9 +18,7 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 
 ## Unit tests
 
-Content to be added, cheers!
-
-To run unit test, use ```python tests.py```
+Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
 
 ## Screenshots
 
