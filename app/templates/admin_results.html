@@ -5,6 +5,7 @@
     <form method="POST">
         {{ form.hidden_tag() }}
         <p>
+            Select User: 
             {{ form.user }}
             {% for error in form.user.errors %}
             <span style="color: red;">[{{ error }}]</span>
