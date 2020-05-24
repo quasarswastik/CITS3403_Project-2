@@ -53,6 +53,6 @@ class SetSelect(FlaskForm):
     sets = SelectField('Question Set:', coerce=int)
     submit = SubmitField('Load Question Set')
 
-# class DeleteUserForm(FlaskForm):
-#     users = MultiCheckboxField('Users to Delete', coerce=int)
-#     submit = SubmitField('Delete Users')
+class DeleteUserForm(FlaskForm):
+    users = MultiCheckboxField('Users to Delete', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Delete Users')

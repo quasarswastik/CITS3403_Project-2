@@ -1,16 +1,20 @@
-<!-- {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
     <h1>Delete Users</h1>
     <p>Hi Administrator <span>{{current_user.username}}</span>. Use this page to delete users</p>
     <br>
     <form action="" method="POST">
+        {{ form.hidden_tag() }}
         <p>
             {{ form.users.label }}<br>
             {{ form.users() }}<br>
+            {% for error in form.users.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.submit() }}
         </p>
     </form>
-{% endblock %} -->
+{% endblock %}
