@@ -1,35 +1,34 @@
-
-body    {
-    margin: 15px;
-    border: 10rem;
-    font-family: 'Exo 2', sans-serif;
-    font-size: medium;
-    /* use different font */
-    background-color: #F7F9F9;
-    /* line-height: normal; */
+body  {
+  margin: 15px;
+  border: 10rem;
+  font-family: 'Exo 2', sans-serif;
+  font-size: medium;
+  /* use different font */
+  background-color: #F7F9F9;
+  /* line-height: normal; */
 }
 
 .navbar-default {
-    background-color: white;
+  background-color: white;
 }
 
 .navbar-default .navbar-nav > li > a:hover {
-    text-shadow: 0 0 5px rgba(19, 231, 72, 0.877);
-    background-color: rgba(24, 16, 16, 0.548);
-    color: white;
+  text-shadow: 0 0 5px rgba(19, 231, 72, 0.877);
+  background-color: rgba(24, 16, 16, 0.548);
+  color: white;
 }
 
+/* main footer with contact info - appears on all pages */
 div.headfoot {
-    margin: 0 auto;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-    padding-top: 1rem;
-    padding-left: 10rem;
-    padding-right: 10rem;
-    padding-bottom: 1rem;
-    text-align: center;
-    max-width: 1024px;
-
+  margin: 0 auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding-top: 1rem;
+  padding-left: 10rem;
+  padding-right: 10rem;
+  padding-bottom: 1rem;
+  text-align: center;
+  max-width: 1024px;
 }
 
 .content    {
@@ -39,19 +38,18 @@ div.headfoot {
   padding-bottom: 1rem;
   margin: 0 auto;
   max-width: 1024px;
-  /* font-size: large; */
-  /* text-align: center; */
 }
 
-.author_block p {
-  line-height: 1.6em;
-}
-
+/* block of information for each author */
 .author_block {
   border-top: 2px solid #eee;
   border-bottom: 2px solid #eee;
   padding-left: 10px;
   margin-bottom: 25px;
+}
+
+.author_block p {
+  line-height: 1.6em;
 }
 
 .important_heading  {
@@ -62,6 +60,7 @@ div.headfoot {
   text-align: center;
 }
 
+/* Text that stands out on page */
 span {
   display: inline-block;
   color: rgb(3, 95, 216);
@@ -69,64 +68,68 @@ span {
   line-height: normal;
 }
 
+/* contact links on authors page */
 a.glyphicon {
   color: #726b71;
   text-decoration: none;
   padding-right: 8px;
 }
 
+/* hover and active effects for contact links */
 .contact_links a:hover, .contact_links a:active {
   color: #09c;
   text-decoration: none;
 }
 
 .page_heading{
-    font-weight: bold;
-    text-decoration: underline;
-    margin-bottom: 20px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 20px;
 }
 
 .sub_heading {
-    font-weight: bold;
+  font-weight: bold;
 }
 
-/* .text_basis  {
-    box-shadow: 5px 10px 8px 8px rgba(17, 17, 17, .06);
-    background-color: white;
-    height: auto;
-    border: 1px solid #eee;
-    border-radius: 15px 15px 15px 15px;
-} */
-
+/* effects for main content on each page */
 .text_basis  {
-    box-shadow:
-    0 2.5px 2.5px rgba(17, 17, 17, 0.035),
-    0 6.5px 5.0px rgba(17, 17, 17, 0.045),
-    0 12.5px 10px rgba(17, 17, 17, 0.06),
-    0 22.5px 18.0px rgba(17, 17, 17, 0.075),
-    0 42.0px 33.5px rgba(17, 17, 17, 0.080),
-    0 100px 80px rgba(17, 17, 17, 0.12)
-    ;
-    background-color: white;
-    height: auto;
-    border: 1px solid #eee;
-    border-radius: 15px 15px 15px 15px;
+  box-shadow:
+  0 2.5px 2.5px rgba(17, 17, 17, 0.035),
+  0 6.5px 5.0px rgba(17, 17, 17, 0.045),
+  0 12.5px 10px rgba(17, 17, 17, 0.06),
+  0 22.5px 18.0px rgba(17, 17, 17, 0.075),
+  0 42.0px 33.5px rgba(17, 17, 17, 0.080),
+  0 100px 80px rgba(17, 17, 17, 0.12)
+  ;
+  background-color: white;
+  height: auto;
+  border: 1px solid #eee;
+  border-radius: 15px 15px 15px 15px;
 }
 
+/* input boxes on login, registration, admin pages */
 input[type=text], input[type=password] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    border-radius: 3px;
-    outline: none;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-radius: 3px;
+  outline: none;
 }
 
+input:focus {
+  box-shadow: 0 0 2px 2px rgba(223, 34, 230, 0.747);
+  transition: box-shadow ease-in-out .15s;
+}
+
+/* radio buttons for multi-choice answers */
 input[type=radio] {
-    margin-right: 5px;
-    margin-left: 10px;
+  margin-right: 5px;
+  margin-left: 10px;
+  text-align: left;
 }
 
+/* used for the Question Body entry */
 textarea {
   width: 100%;
   height: 150px;
@@ -137,8 +140,8 @@ textarea {
   background-color: #f8f8f8;
   resize: none;
 }
+
 textarea:focus  {
-  /* border: 2px solid #E67E22; */
   background-color: white;
   box-shadow: 0 0 2px 2px rgba(252, 153, 5, 0.87);
   transition: box-shadow ease-in-out .15s;
@@ -155,11 +158,11 @@ table {
 }
 
 table.answer_table {
-    border-collapse: separate;
-    width: 100%;
-    border-radius: 10px;
-    margin-bottom: 20px;
-    }
+  border-collapse: separate;
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
 
 table.answer_table th, table.answer_table td {
   border: 0.5px  solid rgba(36, 31, 31, 0.562);
@@ -170,8 +173,8 @@ table.answer_table th, table.answer_table td {
 
 
 th, td {
-    text-align: center;
-    padding: 8px;   
+  text-align: center;
+  padding: 8px;   
 }
 
 th {
@@ -187,15 +190,9 @@ tr:nth-child(odd) {
   background-color: #e6e0dc;
 }
 
-input:focus {
-    /* box-shadow: 0 0 8px 1px rgba(92, 222, 255, 0.747); */
-    box-shadow: 0 0 2px 2px rgba(223, 34, 230, 0.747);
-    transition: box-shadow ease-in-out .15s;
-}
-
+/* buttons to submit data */
 input[type=button], input[type=submit]  {
   background-color: rgba(19, 231, 72, 0.877);
-  /* border: 2px solid #eee; */
   align-items: center;
   justify-content: center;
   border-radius: 5px;
@@ -204,26 +201,22 @@ input[type=button], input[type=submit]  {
   cursor: pointer;
 }
 
+/* button on login page */
 .login_btn {
   width: 100px;
   height: 50px;
-  /* font-weight: bold; */
   font-size: large;
 }
 
 .question_number {
-    font-weight: bold;
+  font-weight: bold;
 }
 
+/* block for each question on test page */
 .question_block {
-    border-top: 1px solid #eee;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-input[type=radio] {
-    /* display: inline; */
-    text-align: left;
+  border-top: 1px solid #eee;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 
