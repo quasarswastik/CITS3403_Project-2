@@ -16,6 +16,17 @@
 
     <hr>
 
+    <script>
+        function startCounting()    {
+            document.getElementById("timer").innerHTML = "I am working!s"
+        }
+    </script>
+    
+    <div style = "text-align: right;" onload="startCounting()"> <p id="timer">Hello!</p></div>
+
+    
+
+
     {% if noSet == False %}
     <form action="/postanswers/" method="post">
             <input id="qSet" name="qSet" type="hidden" value="{{ activeQSet }}">
