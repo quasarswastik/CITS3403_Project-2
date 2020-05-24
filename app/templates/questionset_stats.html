@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Question Set Statistics</h1>
+    <p>Below are the global statistics for all user's quiz attempts! See how you rank up at <a href="{{ url_for('take_test') }}">Take Test</a>!</p>
+    <table style="width: 100%; border-collapse: collapse;">
+        <tr>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Question Set</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Attempts</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Average Score</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Highest Score</th>
+            <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Lowest Score</th>
+        </tr>
+        {% for d in data %}
+        <tr>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{d.set_name}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{d.attempts}}</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{d.avg}} %</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{d.max}} %</td>
+            <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;">{{d.min}} %</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+
+    <!-- {% for attempt in user_attempts %}
+    <p> Attempt Number: {{attempt.attempt_id}} | Number Correct: {{attempt.numberCorrect}} | Number Incorrect: {{attempt.numberIncorrect}}
+        | Score: {{attempt.score}}% | Time of Test: {{attempt.timeOfAttempt}}
+    </p>
+    {% endfor %} -->
+{% endblock %}
