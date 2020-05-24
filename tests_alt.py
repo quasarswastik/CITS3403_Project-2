@@ -2,6 +2,8 @@
 import unittest, os
 from app import app, db
 from app.models import User, QuestionSet, Question, UserAnswers
+# from app.forms import RegistrationForm
+# from app.forms import validate_username
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -85,7 +87,24 @@ class UserModelCase(unittest.TestCase):
         u2 = User.query.get('2')
         self.assertEqual(u1.admin, True)
         self.assertEqual(u2.admin, False)
+    
+    # Tests that an error message is received if a new user tries to register with the same username of a different user
+    def test_unique_username(self):
+        response = self.app.post('/register', data=dict(
+            username='Jack', email = 'joe222@gmail.com', 
+            password = 'great', password_2 = 'great', 
+            administrator = 'True'), follow_redirects=True)
+        self.assertTrue(b'Please use a different username' in response.data)
+        # print(response.data)
 
+    # Tests that an error message is received if a new user tries to register with the same email address of a different user
+    def test_unique_email(self):
+        response = self.app.post('/register', data=dict(
+            username='Mike', email = 'michael@outlook.com', 
+            password = 'great', password_2 = 'great', 
+            administrator = 'True'), follow_redirects=True)
+        self.assertTrue(b'Please use a different email address' in response.data)
+        # print(response.data)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
