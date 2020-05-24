@@ -19,3 +19,7 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 ## Unit tests
 
 Content to be added, cheers!
+
+## Screenshots
+
+![Image of home page](https://octodex.github.com/images/yaktocat.png)
