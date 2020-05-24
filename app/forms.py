@@ -42,7 +42,7 @@ class MultiCheckboxField(SelectMultipleField):
 class QuestionSetEntryForm(FlaskForm):
     questionset = TextAreaField('Question Set Name', validators=[DataRequired()])
     questions = MultiCheckboxField('Questions to Add', coerce=int)
-    submit = SubmitField('Submit Question Set')
+    submit = SubmitField('Add Question Set')
 
     def validate_questionset(self, questionset):
         qset = QuestionSet.query.filter_by(set_name=questionset.data).first()
@@ -56,3 +56,7 @@ class SetSelect(FlaskForm):
 class DeleteUserForm(FlaskForm):
     users = MultiCheckboxField('Users to Delete', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Delete Users')
+
+class DeleteQuestionSetsForm(FlaskForm):
+    sets = MultiCheckboxField('Question Sets to Delete', coerce=int, validators=[DataRequired()])
+    submit = SubmitField('Delete Question Sets')

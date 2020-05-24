@@ -1,11 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm
-from app.forms import RegistrationForm
-from app.forms import QuestionEntryForm
-from app.forms import QuestionSetEntryForm
-from app.forms import SetSelect
-from app.forms import DeleteUserForm
+from app.forms import LoginForm, RegistrationForm, QuestionEntryForm, QuestionSetEntryForm, SetSelect, DeleteUserForm, DeleteQuestionSetsForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -216,10 +211,28 @@ def delete_users():
     
     if form.validate_on_submit():
         for q_id in form.users.data:
-            print(User.query.filter_by(id=q_id))
             User.query.filter_by(id=q_id).delete()
         db.session.commit()
         flash('User(s) deleted successfully.')
         return redirect(url_for('delete_users'))
 
     return render_template('delete_user.html', title = 'Admin - Delete Users', form = form)
+
+@app.route('/delete_sets/', methods=['GET', 'POST'])
+@login_required
+def delete_sets():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
+    form = DeleteQuestionSetsForm()
+    form.sets.choices = [(s.set_id, s.set_name) for s in QuestionSet.query.all()]
+    
+    if form.validate_on_submit():
+        for s_id in form.sets.data:
+            QuestionSet.query.filter_by(set_id=s_id).delete()
+        db.session.commit()
+        flash('Set(s) deleted successfully.')
+        return redirect(url_for('delete_users'))
+
+    return render_template('delete_set.html', title = 'Admin - Delete Question Sets', form = form)
