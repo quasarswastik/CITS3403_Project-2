@@ -22,4 +22,4 @@ Content to be added, cheers!
 
 ## Screenshots
 
-![Image of home page](https://octodex.github.com/images/yaktocat.png)
+![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/IndexPage.jpg)
