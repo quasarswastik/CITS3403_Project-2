@@ -133,6 +133,7 @@ def register():
 @app.route('/add_questions', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def add_questions():
+    # limits access to this page if the user is not an Administrator
     if not current_user.admin:
         flash('You do not have access to that page')
         return redirect(url_for('login'))
@@ -150,6 +151,7 @@ def add_questions():
 @app.route('/add_set', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def add_set():
+    # limits access to this page if the user is not an Administrator
     if not current_user.admin:
         flash('You do not have access to that page')
         return redirect(url_for('login'))
@@ -169,6 +171,7 @@ def add_set():
 @app.route('/add_users', methods=['GET', 'POST'])
 @login_required
 def add_users():
+    # limits access to this page if the user is not an Administrator
     if not current_user.admin:
         flash('You do not have access to that page')
         return redirect(url_for('login'))
@@ -192,10 +195,10 @@ def results():
 
 @app.route('/theme')
 def theme():
-    # Fetch all users
+    # # Page renders the code in the HTML template
     return render_template('theme.html', title = 'Theme')
 
 @app.route('/authors')
 def authors():
-    # Fetch all users
+    # Page renders the code in the HTML template
     return render_template('authors.html', title = 'Authors')
