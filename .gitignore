@@ -6,5 +6,7 @@ __pycache__/*
 .vscode/*
 app.db'*.sqlite3'
 app.db
+test.db
 *.pyc
 migrations/versions/__pycache__/*
+.coverage
