@@ -22,4 +22,4 @@ Unit tests have been added in tests.py, and can by run easily with ```python tes
 
 ## Screenshots
 
-![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/IndexPage.jpg)
+![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/HomePage.png)
