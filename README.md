@@ -8,9 +8,9 @@ This application can be used for Buzzfeed style quizzes in education sector. Adm
 
 ## Authors
 
-- [Adam Inskip](https://github.com/inskippy)
-- [Craig Huggins](https://github.com/craighuggins)
-- [Swastik Raj Chauhan](https://github.com/quasarswastik)
+- [Adam Inskip (22929581)](https://github.com/inskippy)
+- [Craig Huggins (22204675)](https://github.com/craighuggins)
+- [Swastik Raj Chauhan (22556239)](https://github.com/quasarswastik)
 
 ## Architecture
 
