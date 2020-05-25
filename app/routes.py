@@ -1,11 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm
-from app.forms import RegistrationForm
-from app.forms import QuestionEntryForm
-from app.forms import QuestionSetEntryForm
-from app.forms import SetSelect
-from app.forms import DeleteUserForm
+from app.forms import LoginForm, RegistrationForm, QuestionEntryForm, QuestionSetEntryForm, SetSelect, DeleteUserForm, DeleteQuestionSetsForm, AdminUserResultsForm
 # this is for user login
 from flask_login import current_user, login_user, logout_user
 # this is the databse required here
@@ -216,10 +211,77 @@ def delete_users():
     
     if form.validate_on_submit():
         for q_id in form.users.data:
-            print(User.query.filter_by(id=q_id))
             User.query.filter_by(id=q_id).delete()
         db.session.commit()
         flash('User(s) deleted successfully.')
         return redirect(url_for('delete_users'))
 
     return render_template('delete_user.html', title = 'Admin - Delete Users', form = form)
+
+@app.route('/delete_sets/', methods=['GET', 'POST'])
+@login_required
+def delete_sets():
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
+    form = DeleteQuestionSetsForm()
+    form.sets.choices = [(s.set_id, s.set_name) for s in QuestionSet.query.all()]
+    
+    if form.validate_on_submit():
+        for s_id in form.sets.data:
+            QuestionSet.query.filter_by(set_id=s_id).delete()
+        db.session.commit()
+        flash('Set(s) deleted successfully.')
+        return redirect(url_for('delete_users'))
+
+    return render_template('delete_set.html', title = 'Admin - Delete Question Sets', form = form)
+
+@app.route('/admin_results/', methods=['GET', 'POST'])
+@login_required # this will force login to access the page
+def admin_results():
+    users = User.query.all()
+    asets = []
+    form = AdminUserResultsForm()
+    form.user.choices = [(u.id, u.username) for u in users]
+    form.user.choices.insert(0, (0,''))
+    noUser = True
+    activeUser = 0
+
+    if form.validate_on_submit():
+        if form.user.data == 0:
+            # blank, display no questions
+            noSet = True
+            print('yoooo')
+        else:
+            print('hey')
+            activeUser = form.user.data
+            asets = AnswerSet.query.filter_by(user_id=activeUser)
+            noSet = False
+
+    return render_template('admin_results.html', title = 'View Results', asets=asets, form=form, noUser=noUser)
+
+@app.route('/stats')
+def stats():
+    qsets = QuestionSet.query.all()
+    data = []
+    avg = 0
+    for qset in qsets:
+        maxScore = float(qset.asets.first().score)
+        minScore = float(qset.asets.first().score)
+        for a in qset.asets.all():
+            avg += float(a.score)
+            if float(a.score) > maxScore:
+                maxScore = float(a.score)
+            elif float(a.score) < minScore:
+                minScore = float(a.score)
+        avg = avg/len(qset.asets.all())
+        data.append({
+            'set_name': qset.set_name,
+            'attempts': len(qset.asets.all()),
+            'avg': avg,
+            'max': maxScore,
+            'min': minScore
+        })
+        avg=0
+    return render_template('questionset_stats.html', title = 'Question Set Stats', data=data)

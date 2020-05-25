@@ -18,10 +18,8 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 
 ## Unit tests
 
-Content to be added, cheers!
-
-To run unit test, use ```python tests.py```
+Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
 
 ## Screenshots
 
-![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/IndexPage.jpg)
+![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/HomePage.png)

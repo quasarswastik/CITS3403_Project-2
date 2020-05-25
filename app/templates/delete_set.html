@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Delete Question Sets</h1>
+    <p>Hi Administrator <span>{{current_user.username}}</span>. Use this page to delete question sets.</p>
+    <br>
+    <form action="" method="POST">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.sets.label }}<br>
+            {{ form.sets() }}<br>
+            {% for error in form.sets.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.submit() }}
+        </p>
+    </form>
+{% endblock %}
