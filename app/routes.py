@@ -200,11 +200,6 @@ def results():
     asets = AnswerSet.query.filter_by(user_id=current_user.id)
     return render_template('results.html', title = 'Results', asets=asets)
 
-# @app.route('/theme')
-# def theme():
-#     # # Page renders the code in the HTML template
-#     return render_template('theme.html', title = 'Theme')
-
 @app.route('/authors')
 def authors():
     # Page renders the code in the HTML template

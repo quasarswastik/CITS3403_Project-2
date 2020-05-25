@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h3 class="page_heading">Welcome</h3>
+    <h3 class="page_heading">Welcome {{current_user.username}}</h3>
     <p>
         The purpose of this website is to deliver an assessable quiz for users to take. The design is that of a General-purpose quiz such that questions of any category can be used. It is entirely up to the administrator as to the type of questions, as well as the level of difficulty.
     </p>
