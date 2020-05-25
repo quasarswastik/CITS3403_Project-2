@@ -130,22 +130,22 @@ We initially decided to split the tasks based on technologies which we are comfo
 ## User Account Details
 Below are some preloaded user accounts, allowing you to test the quiz easily.
 
-Username: Craig
+Username: Craig<br>
 Password: tenniS21
 
-Username: Swastik-Raj
+Username: Swastik-Raj<br>
 Password: footbAll18
 
-Username: Adam
+Username: Adam<br>
 Password: Rugby32
 
-Username: Susan
+Username: Susan<br>
 Password: caT1987
 
 ## Preloaded Question Sets
 Two preloaded question sets are included in the starting database. These questions were sourced from the links below.
 
 Answers to quiz:
-https://www.challengethebrain.com/questions-for-maths-quiz-two.htm
-challengethebrain.com/answer-maths-quiz-two.htm
+https://www.challengethebrain.com/questions-for-maths-quiz-two.htm<br>
+challengethebrain.com/answer-maths-quiz-two.htm<br>
 https://www.express.co.uk/life-style/life/1278265/100-general-knowledge-quiz-questions-and-answers
