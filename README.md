@@ -20,6 +20,24 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 
 Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
 
+## Dependencies
+
+- Python 3.x
+  - Flask
+  - Numpy
+  - Werkzeug
+  - Selenium
+  - Jinja2
+  - WTForms
+- HTML5
+- CSS3
+  - Bootstrap 
+  - Font Awesome
+  - Google Fonts
+- JavaScript
+  - JQuery
+
+
 ## Screenshots
 
 ![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/HomePage.png)
