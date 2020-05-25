@@ -126,3 +126,26 @@ We initially decided to split the tasks based on technologies which we are comfo
 ![Image of taketest page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/TakeTest.png)
 ![Image of testhistory page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/TestHistory.png)
 ![Image of results page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/Results.png)
+
+## User Account Details
+Below are some preloaded user accounts, allowing you to test the quiz easily.
+
+Username: Craig
+Password: tenniS21
+
+Username: Swastik-Raj
+Password: footbAll18
+
+Username: Adam
+Password: Rugby32
+
+Username: Susan
+Password: caT1987
+
+## Preloaded Question Sets
+Two preloaded question sets are included in the starting database. These questions were sourced from the links below.
+
+Answers to quiz:
+https://www.challengethebrain.com/questions-for-maths-quiz-two.htm
+challengethebrain.com/answer-maths-quiz-two.htm
+https://www.express.co.uk/life-style/life/1278265/100-general-knowledge-quiz-questions-and-answers
