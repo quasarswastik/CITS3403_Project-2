@@ -31,6 +31,65 @@ A single web server and a single database is used. In the current architecture, 
 
 Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
 
+
+<span style="text-decoration: underline">Unit Test Descriptions:</span>
+```Python
+class UserModelCase(unittest.TestCase):
+
+    setUp(self) method:
+    - special method that runs before and after each test
+    - ensure that the testing Database is separate from the main Database
+    - create two users for testing purposes and add them to the database
+
+    tearDown(self) method:
+    - resets the contents of the database
+
+    test_login_page_loads(self) method:
+    - tests that the log-in page has loaded correctly
+    - ensures that the title text 'Log In' appears on the page
+    - ensures we received a Response Status Code == 200
+
+    def test_login_page_loads_invalid(self) method:
+    - we test that some dummy text does not appear on the page
+
+    def test_registration_page_loads(self) method:
+    - tests that the Register page has loaded correctly
+    - ensures that the title text 'Register' appears on the page
+    - ensures we received a Response Status Code == 200
+
+    def test_registration_page_loads_invalid(self) method:
+    - we test that some dummy text does not appear on the page
+
+    def test_user_registration(self) method:
+    - tests the registration of a new user
+    - ensures we received a Response Status Code == 200
+
+    def test_user_login(self) method:
+    - tests the log-in of a user currently in the database
+    - ensures we received a Response Status Code == 200
+
+    def test_valid_logout(self) method:
+    - tests logout works correctly
+    - ensures we received a Response Status Code == 200
+
+    def test_password_hashing(self) method:
+    - retrieve the two users from the database
+    - run the check_password method to ensure that password hashing worked correctly
+
+    def test_administrator(self) method:
+    - retrieve the two users from the database
+    - check that each user has the correct 'Administrator' status
+
+    def test_unique_username(self) method:
+    - attempt to register a New User with the same username as an existing user in the database
+    - check that the appropriate error message is displayed on the page
+
+    def test_unique_email(self) method:
+    - attempt to register a New User with the same email address as an existing user in the database
+    - check that the appropriate error message is displayed on the page
+```
+
+
 Additional testing database is available.
 
 ## Agile Development Methodolgy
