@@ -64,3 +64,6 @@ We initially decided to split the tasks based on technologies which we are comfo
 ## Screenshots
 
 ![Image of home page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/HomePage.png)
+![Image of taketest page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/TakeTest.png)
+![Image of testhistory page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/TestHistory.png)
+![Image of results page](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/Results.png)
