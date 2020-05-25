@@ -14,7 +14,12 @@ This application can be used for Buzzfeed style quizzes in education sector. Adm
 
 ## Architecture
 
-The client-side of the web application is designed using HTML, CSS and JavaScript. The server-side is made using Flask and the dataase is developed on SQLite. A single web server and a single database is used. In the current architecture, when a user opens the website, the web server responds to the requests with approprite HTML and in general............
+The client-side of the web application is designed using HTML, CSS and JavaScript. The server-side is made using Flask micro web framework in Python and the database is developed on SQLite. 
+
+A single web server and a single database is used. In the current architecture, a user sends a request to the web server via HTML forms which are rendered from Jinja2 Templates. The request sent by the users are received by web server and depending on the request, the content is delivered. There can be requests to render plain webpages, fetch information from the database and display to the user or to take input from the user and update the database.
+
+## Database Schema
+
 
 
 ## Launching the application
@@ -25,6 +30,8 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 ## Unit tests
 
 Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
+
+Additional testing database is available.
 
 ## Agile Development Methodolgy
 
