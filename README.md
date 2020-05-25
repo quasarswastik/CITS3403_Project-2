@@ -6,6 +6,12 @@ This project is developed for the unit Agile Web Development at The University o
 
 This application can be used for Buzzfeed style quizzes in education sector. Administrators (such as teachers and unit coordinators) can add questions and create question sets. Users (students) of the application can start a question set and complete questions. The answers by the users can be viewed and the results of the assessments are made available.
 
+## Authors
+
+- [Adam Inskip](https://github.com/inskippy)
+- [Craig Huggins](https://github.com/craighuggins)
+- [Swastik Raj Chauhan](https://github.com/quasarswastik)
+
 ## Architecture
 
 The client-side of the web application is designed using HTML, CSS and JavaScript. The server-side is made using Flask and the dataase is developed on SQLite. A single web server and a single database is used. In the current architecture, when a user opens the website, the web server responds to the requests with approprite HTML and in general............
@@ -19,6 +25,10 @@ The client-side of the web application is designed using HTML, CSS and JavaScrip
 ## Unit tests
 
 Unit tests have been added in tests.py, and can by run easily with ```python tests.py```
+
+## Agile Development Methodolgy
+
+This web application is developed
 
 ## Dependencies
 
@@ -36,7 +46,6 @@ Unit tests have been added in tests.py, and can by run easily with ```python tes
   - Google Fonts
 - JavaScript
   - JQuery
-
 
 ## Screenshots
 
