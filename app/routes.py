@@ -97,7 +97,7 @@ def postanswers():
     db.session.add(aset)
     db.session.commit()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('results'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
