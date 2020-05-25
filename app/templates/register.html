@@ -32,6 +32,17 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+
+        <div id="pswd_info">
+            <h4>Recommended password should contain:</h4>
+            <ul>
+                <li id="letter" class="invalid">At least <strong>one letter</strong></li>
+                <li id="capital" class="invalid">At least <strong>one capital letter</strong></li>
+                <li id="number" class="invalid">At least <strong>one number</strong></li>
+                <li id="length" class="invalid">At least <strong>8 characters</strong></li>
+            </ul>
+        </div>        
+
         <p>
             {{ form.administrator() }}  {{ form.administrator.label }}
         </p>
