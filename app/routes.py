@@ -12,9 +12,20 @@ from werkzeug.urls import url_parse
 from numpy import random # used for randomizing question display order
 
 @app.route('/')
+@app.route('/theme')
+@login_required # this will force login to access the page
+def theme():
+    # # Page renders the code in the HTML template
+    return render_template('theme.html', title = 'Theme')
+
 @app.route('/index')
 @login_required # this will force login to access the page
 def index():
+    # limits access to this page if the user is not an Administrator
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
+
     # Fetch all users
     users = User.query.all()
     questions = Question.query.all()
@@ -86,13 +97,13 @@ def postanswers():
     db.session.add(aset)
     db.session.commit()
 
-    return redirect(url_for('index'))
+    return redirect(url_for('results'))
 
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('index'))
+        return redirect(url_for('theme'))
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
@@ -103,7 +114,7 @@ def login():
         logged_in_user = user.id
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('index')
+            next_page = url_for('theme')
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
@@ -189,10 +200,10 @@ def results():
     asets = AnswerSet.query.filter_by(user_id=current_user.id)
     return render_template('results.html', title = 'Results', asets=asets)
 
-@app.route('/theme')
-def theme():
-    # # Page renders the code in the HTML template
-    return render_template('theme.html', title = 'Theme')
+# @app.route('/theme')
+# def theme():
+#     # # Page renders the code in the HTML template
+#     return render_template('theme.html', title = 'Theme')
 
 @app.route('/authors')
 def authors():
