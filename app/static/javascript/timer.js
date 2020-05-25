@@ -28,6 +28,6 @@ function time() {
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
-    document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+    document.getElementById("timer").innerHTML = "<b>" + hours + "h " + minutes + "m " + seconds + "s " + "</b>";
     var t = setTimeout(time, 500);
 }
