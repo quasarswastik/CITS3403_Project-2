@@ -20,7 +20,7 @@ A single web server and a single database is used. In the current architecture, 
 
 ## Database Schema
 
-
+![Schema](https://github.com/quasarswastik/CITS3403_Project-2/blob/master/Schema_rough.png)
 
 ## Launching the application
 
