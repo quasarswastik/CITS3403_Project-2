@@ -16,6 +16,9 @@
 
     <hr>
 
+    <div style="text-align: right; color: red;"><p id="timer">Click Start!</p>
+    <button onclick="time()" id = "timer_btn"> Start Time! </button>
+    </div>
     {% if noSet == False %}
     <form action="/postanswers/" method="post">
             <input id="qSet" name="qSet" type="hidden" value="{{ activeQSet }}">
