@@ -38,7 +38,7 @@ class UserModelCase(unittest.TestCase):
 
     setUp(self) method:
     - special method that runs before and after each test
-    - ensure that the testing Database is separate is different than the main Database
+    - ensure that the testing Database is separate from the main Database
     - create two users for testing purposes and add them to the database
 
     tearDown(self) method:
