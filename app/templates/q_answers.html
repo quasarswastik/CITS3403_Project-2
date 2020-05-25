@@ -16,8 +16,12 @@
 
     <hr>
 
+    <div style="text-align: right; color: red;"><p id="timer">Click Start!</p>
+    <button onclick="time()" id = "timer_btn"> Start Time! </button>
+    </div>
+    <!-- <img src="https://www.countryflags.io/be/flat/64.png" onload="time()" width="100" height="132"> -->
     {% if noSet == False %}
-    <form action="/postanswers/" method="post">
+    <form action="/postanswers/" method="post" onload = "time()">
             <input id="qSet" name="qSet" type="hidden" value="{{ activeQSet }}">
             {% for question in questions %}
             <div class="question_block">
