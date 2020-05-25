@@ -10,11 +10,12 @@ function removeBtn()    {
     button.parentNode.removeChild(button);
 }
 
+
 function time() {
 
     if (i == 0) {
         startTime();
-        removeBtn()
+        removeBtn();
     }
 
     var now = new Date().getTime();

@@ -52,6 +52,7 @@ def take_test():
     form.sets.choices.insert(0, (0,''))
     noSet = True
     activeQSet = 0
+    activeQSetName = "None Selected"
     randomizedQuestions = []
 
     if form.validate_on_submit():
@@ -60,9 +61,9 @@ def take_test():
             noSet = True
         else:
             activeQSet = form.sets.data
+            activeQSetName = QuestionSet.query.get(activeQSet).set_name
             questions = QuestionSet.query.get(activeQSet).questions
-            noSet = False
-            
+            noSet = False            
 
             for idx, question in enumerate(questions):
                 answers = [question.correctAnswer, question.answer2, question.answer3, question.answer4]
@@ -76,7 +77,7 @@ def take_test():
                     'a4': answers[qOrder[3]]
                 })
 
-    return render_template('q_answers.html', title = 'Test', questions=randomizedQuestions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet)
+    return render_template('q_answers.html', title = 'Test', questions=randomizedQuestions, sets=sets, form=form, noSet=noSet, activeQSet=activeQSet, activeQSetName=activeQSetName)
 
 @app.route('/postanswers/', methods=['POST'])
 @login_required
