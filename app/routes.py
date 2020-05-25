@@ -274,21 +274,22 @@ def stats():
     data = []
     avg = 0
     for qset in qsets:
-        maxScore = float(qset.asets.first().score)
-        minScore = float(qset.asets.first().score)
-        for a in qset.asets.all():
-            avg += float(a.score)
-            if float(a.score) > maxScore:
-                maxScore = float(a.score)
-            elif float(a.score) < minScore:
-                minScore = float(a.score)
-        avg = avg/len(qset.asets.all())
-        data.append({
-            'set_name': qset.set_name,
-            'attempts': len(qset.asets.all()),
-            'avg': avg,
-            'max': maxScore,
-            'min': minScore
-        })
-        avg=0
+        if qset.asets.first() is not None:
+            maxScore = float(qset.asets.first().score)
+            minScore = float(qset.asets.first().score)
+            for a in qset.asets.all():
+                avg += float(a.score)
+                if float(a.score) > maxScore:
+                    maxScore = float(a.score)
+                elif float(a.score) < minScore:
+                    minScore = float(a.score)
+            avg = avg/len(qset.asets.all())
+            data.append({
+                'set_name': qset.set_name,
+                'attempts': len(qset.asets.all()),
+                'avg': avg,
+                'max': maxScore,
+                'min': minScore
+            })
+            avg=0
     return render_template('questionset_stats.html', title = 'Question Set Stats', data=data)
