@@ -35,7 +35,13 @@ Additional testing database is available.
 
 ## Agile Development Methodolgy
 
-This web application is developed
+Git was used to develop the application and GitHub was used to host the Git repository.
+
+The project was broken down into small manageable chunks and basic work was divided among all the team members. Once the basic functionality was achieved, testing was done for all the components. Basic functionalty was further enchanced once it was made sure that there are no bugs found. This process was repeated until the end result was developed. Designing was a done simultaneously and all the designing was done in an iterative manner giving consideration to compatibility.
+
+Our first goal was to just develop a basic application in which users can register, it was followed by allowing users to answer pre-fed questions. Having many steps in between, now, users can register themselves, they can either be normal users or with administrator privileges, question sets and questions can be created, users can take those quizzes, correct solutions and previous results can be viewed, these are just some of the features of the application among many other.
+
+We initially decided to split the tasks based on technologies which we are comfortable with. As we progressed thrugh the roles blurred and we were all making contributions as needed for the healthy development.
 
 ## Dependencies
 
