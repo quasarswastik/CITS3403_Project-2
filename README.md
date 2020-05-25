@@ -39,6 +39,7 @@ This web application is developed
   - Selenium
   - Jinja2
   - WTForms
+- SQLite
 - HTML5
 - CSS3
   - Bootstrap 
