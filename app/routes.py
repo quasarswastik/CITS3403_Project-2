@@ -247,6 +247,10 @@ def delete_sets():
 @app.route('/admin_results/', methods=['GET', 'POST'])
 @login_required # this will force login to access the page
 def admin_results():
+    # limits access to this page if the user is not an Administrator
+    if not current_user.admin:
+        flash('You do not have access to that page')
+        return redirect(url_for('login'))
     users = User.query.all()
     asets = []
     form = AdminUserResultsForm()
