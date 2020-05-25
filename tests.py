@@ -10,12 +10,11 @@ class UserModelCase(unittest.TestCase):
 
     def setUp(self):
         basedir = os.path.abspath(os.path.dirname(__file__))
-        app.config['SQLALCHEMY_DATABASE_URI'] = \
-            'sqlite:///'+os.path.join(basedir,'test.db')
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///'+os.path.join(basedir,'test.db')
         self.app = app.test_client()
         db.create_all()
-        u1 = User(id=1, username = 'Jack', email = 'jack@myemail.com', admin = True)
-        u2 = User(id=2, username = 'Michael', email = 'michael@outlook.com', admin = False)
+        u1 = User(id=1, username = 'Jack', email = 'jack@myemail.com', admin = True)   # Create Test user 1
+        u2 = User(id=2, username = 'Michael', email = 'michael@outlook.com', admin = False)   # Create Test user 2
         u1.set_password('football')
         u2.set_password('garden')
         db.session.add(u1)
@@ -50,22 +49,21 @@ class UserModelCase(unittest.TestCase):
         response = self.app.get('/register', content_type='html/text')
         self.assertFalse(b'Welcome' in response.data)
 
-    
+    # Testing Registration of a new user
     def test_user_registration(self):
         response = self.app.post('/register', data=dict(
             username='Joe', email = 'joe222@gmail.com', 
             password = 'great', password_2 = 'great', 
             administrator = 'True'), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        # print(response.data)
-
-    
+        
+    # Test login of user in database
     def test_user_login(self):
         response = self.app.post('/login', data=dict(
             username='Jack', password='football', remember_me=False), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
-        # print(response.data)
 
+    # Testing log-out
     def test_valid_logout(self):
         response = self.app.get('/logout', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
@@ -93,7 +91,6 @@ class UserModelCase(unittest.TestCase):
             password = 'great', password_2 = 'great', 
             administrator = 'True'), follow_redirects=True)
         self.assertTrue(b'Please use a different username' in response.data)
-        # print(response.data)
 
     # Tests that an error message is received if a new user tries to register with the same email address of a different user
     def test_unique_email(self):
@@ -102,7 +99,6 @@ class UserModelCase(unittest.TestCase):
             password = 'great', password_2 = 'great', 
             administrator = 'True'), follow_redirects=True)
         self.assertTrue(b'Please use a different email address' in response.data)
-        # print(response.data)
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
